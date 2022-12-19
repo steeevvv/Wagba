@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.orderconfirmation.OrderConfirmationFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="@string/order_confirmation"
+
+                android:textColor="@color/ChineseBlack"
+                android:textSize="20sp" />
+
+            <View
+                android:id="@+id/horizontal_separator4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DBDBDB" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Order_Section1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="12dp">
+
+                <ImageView
+                    android:id="@+id/gate_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="gate_image"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_gate"
+                    app:layout_constraintBottom_toBottomOf="@+id/delivery_gate_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/delivery_gate_txt"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/delivery_gate_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/delivery_gate"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/gate_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <RadioGroup
+                    android:id="@+id/delivery_gate_radio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delivery_gate_txt">
+
+
+                    <RadioButton
+                        android:id="@+id/radio_gate3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_radio_selector"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/gate_3"
+                        android:textSize="12sp"
+                        tools:ignore="TextContrastCheck" />
+
+                    <RadioButton
+                        android:id="@+id/radio_gate4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_radio_selector"
+                        android:button="@android:color/transparent"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/gate_4"
+                        android:textSize="12sp"
+                        tools:ignore="TextContrastCheck" />
+
+                </RadioGroup>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/horizontal_separator3"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#EFEFF1"
+                android:paddingBottom="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/CartSection1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Order_Section2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RadioGroup
+                    android:id="@+id/delivery_time_radio"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/delivery_time_txt">
+
+
+                    <RadioButton
+                        android:id="@+id/radio_time_am"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_radio_selector"
+                        android:button="@android:color/transparent"
+                        android:checked="false"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/_12_00_noon_period"
+                        android:textSize="12sp"
+                        tools:ignore="TextContrastCheck" />
+
+                    <RadioButton
+                        android:id="@+id/radio_time_pm"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/custom_radio_selector"
+                        android:button="@android:color/transparent"
+                        android:fontFamily="@font/poppins"
+                        android:gravity="center"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"
+                        android:text="@string/_15_00_pm_period"
+                        android:textSize="12sp"
+                        tools:ignore="TextContrastCheck" />
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/delivery_time_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/delivery_time"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/delivery_time_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/delivery_time_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="time_img"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_time"
+                    app:layout_constraintBottom_toBottomOf="@+id/delivery_time_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/delivery_time_txt"
+                    tools:ignore="ImageContrastCheck" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/horizontal_separator7"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#EFEFF1"
+                android:paddingBottom="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/CartSection1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Order_Section3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/additional_info_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="info_img"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_info"
+                    app:layout_constraintBottom_toBottomOf="@+id/Order_info_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/Order_info_txt"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/Order_info_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/additional_instructions"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/additional_info_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/oet_additional_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/custom_edittext_basic"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins"
+                    android:hint="@string/type_any_additional_info_here"
+                    android:inputType="textPersonName"
+                    android:padding="12dp"
+                    android:textColorHighlight="@color/wagba_main_100"
+                    android:textColorLink="@color/wagba_main_100"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Order_info_txt"
+                    tools:ignore="TextContrastCheck"
+                    android:importantForAutofill="no" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/horizontal_separator8"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#EFEFF1"
+                android:paddingBottom="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/CartSection1" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/Order_Section4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/o_cart_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="summary_img"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_cart_summary"
+                    app:layout_constraintBottom_toBottomOf="@+id/o_cart_info"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/o_cart_info"
+                    tools:ignore="ImageContrastCheck" />
+
+                <TextView
+                    android:id="@+id/o_cart_info"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="@string/order_summary"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/o_cart_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/o_summary_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/o_cart_img"
+                    app:layout_constraintTop_toBottomOf="@+id/o_cart_info"
+                    tools:listitem="@layout/order_confirmation_row" />
+
+                <View
+                    android:id="@+id/horizontal_separator10"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:background="#DBDBDB"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/o_summary_recyclerView" />
+
+                <TextView
+                    android:id="@+id/o_subtotal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Subtotal"
+                    android:textColor="@color/MistBlue_700"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/horizontal_separator10" />
+
+                <TextView
+                    android:id="@+id/o_subtotal_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="EGP 99.99"
+                    android:textColor="@color/MistBlue_700"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/o_subtotal_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/o_subtotal_txt" />
+
+                <TextView
+                    android:id="@+id/o_delivery_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="EGP 15.00"
+                    android:textColor="@color/MistBlue_700"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/o_delivery_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/o_delivery_txt" />
+
+                <TextView
+                    android:id="@+id/o_delivery_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Delivery Fee"
+                    android:textColor="@color/MistBlue_700"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/o_subtotal_txt" />
+
+                <TextView
+                    android:id="@+id/o_total_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Total (incl. VAT)"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/o_delivery_txt" />
+
+                <TextView
+                    android:id="@+id/o_total_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="EGP 114.99"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/o_total_txt"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/o_total_txt" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/horizontal_separator9"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:background="#EFEFF1"
+                android:paddingBottom="12dp" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/o_payment_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_payment"
+                    app:layout_constraintBottom_toBottomOf="@+id/o_payment_method"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/o_payment_method" />
+
+                <TextView
+                    android:id="@+id/o_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Payment Method"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/o_payment_img"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/poppins"
+                    android:text="Currently Supporting Cash On Delivery ONLY!"
+                    android:textColor="#FF0000"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/o_payment_method" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Confirm Order"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textView16" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

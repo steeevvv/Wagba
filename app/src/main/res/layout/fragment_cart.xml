@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.cart.CartFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/Cart_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:gravity="center"
+                android:text="Current Cart"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="20sp" />
+
+            <View
+                android:id="@+id/horizontal_separator11"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#DBDBDB" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cartLayoutParent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/CartSection1"
+                    android:elevation="6dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/cRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:itemCount="4"
+                        tools:listitem="@layout/cart_element_card" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <View
+                    android:id="@+id/horizontal_separator6"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#EFEFF1"
+                    app:layout_constraintTop_toBottomOf="@+id/CartSection1" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/cartSection2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/horizontal_separator6">
+
+                    <TextView
+                        android:id="@+id/ctv_subtotal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Subtotal"
+                        android:textColor="@color/MistBlue_700"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/ctv_subtotal_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="EGP 99.99"
+                        android:textColor="@color/MistBlue_700"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ctv_subtotal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ctv_subtotal" />
+
+                    <TextView
+                        android:id="@+id/ctv_deliveryfee_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="EGP 15.00"
+                        android:textColor="@color/MistBlue_700"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="@+id/ctv_deliveryfee"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ctv_deliveryfee" />
+
+                    <TextView
+                        android:id="@+id/ctv_total"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="Total (incl. VAT)"
+                        android:textColor="@color/ChineseBlack"
+                        app:layout_constraintStart_toStartOf="@+id/ctv_deliveryfee"
+                        app:layout_constraintTop_toBottomOf="@+id/horizontal_separator5" />
+
+                    <TextView
+                        android:id="@+id/ctv_total_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="12dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="EGP 114.99"
+                        android:textColor="@color/ChineseBlack"
+                        app:layout_constraintBottom_toBottomOf="@+id/ctv_total"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/ctv_total" />
+
+                    <TextView
+                        android:id="@+id/ctv_deliveryfee"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="8dp"
+                        android:fontFamily="@font/poppins"
+                        android:text="Delivery Fee"
+                        android:textColor="@color/MistBlue_700"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ctv_subtotal" />
+
+                    <View
+                        android:id="@+id/horizontal_separator5"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="12dp"
+                        android:background="#DBDBDB"
+                        app:layout_constraintTop_toBottomOf="@+id/ctv_deliveryfee"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                    <Button
+                        android:id="@+id/cbtn_order"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="12dp"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="PLACE ORDER"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/ctv_total" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

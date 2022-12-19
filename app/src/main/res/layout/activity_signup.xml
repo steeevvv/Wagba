@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.Login">
+
+    <EditText
+        android:id="@+id/et_signup_name"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_name_icon"
+        android:drawablePadding="10sp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/hint_name"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:theme="@style/EditTextTheme"
+        app:layout_constraintBottom_toTopOf="@+id/et_signup_mail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_signup_logo"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/et_signup_mail"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_mail_icon"
+        android:drawablePadding="10sp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/hint_mail"
+        android:inputType="textEmailAddress"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:theme="@style/EditTextTheme"
+        app:layout_constraintBottom_toTopOf="@+id/et_signup_phone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_name"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/et_signup_phone"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_phone_icon"
+        android:drawablePadding="10sp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/hint_signup_phone"
+        android:inputType="phone"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:theme="@style/EditTextTheme"
+        app:layout_constraintBottom_toTopOf="@+id/et_signup_pw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_mail"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/et_signup_pw"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_pw_icon"
+        android:drawablePadding="10sp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:theme="@style/EditTextTheme"
+        app:layout_constraintBottom_toTopOf="@+id/et_signup_pw_confirm"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_phone"
+        tools:ignore="TextContrastCheck" />
+
+    <EditText
+        android:id="@+id/et_signup_pw_confirm"
+        android:layout_width="363dp"
+        android:layout_height="wrap_content"
+        android:autofillHints=""
+        android:background="@drawable/custom_input"
+        android:drawableStart="@drawable/custom_pw_icon"
+        android:drawablePadding="10sp"
+        android:ems="10"
+        android:fontFamily="@font/poppins"
+        android:hint="@string/hint_confirm_pw"
+        android:inputType="textPassword"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:theme="@style/EditTextTheme"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_signup_pw"
+        tools:ignore="TextContrastCheck" />
+
+    <Button
+        android:id="@+id/btn_signup_signup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:shadowColor="@color/wagba_secondary_100"
+        android:text="@string/btn_signup_signup"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/guideline3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="TextContrastCheck" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="@string/txt_signup_pw_restriction_0"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintStart_toStartOf="@+id/et_signup_pw_confirm"
+        app:layout_constraintTop_toTopOf="@+id/guideline4"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/txt_signup_pw_restriction_2"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/ic_correct"
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/txt_signup_pw_restriction_1"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/ic_correct"
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="5dp"
+        android:fontFamily="@font/poppins"
+        android:text="@string/txt_signup_pw_restriction_3"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        app:drawableStartCompat="@drawable/ic_correct"
+        app:layout_constraintBottom_toTopOf="@+id/btn_signup_signup"
+        app:layout_constraintStart_toStartOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="@string/txt_signup_haveaccount"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_signup_loginbtn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+    <TextView
+        android:id="@+id/tv_signup_loginbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins"
+        android:text="@string/btn_signup_login"
+        android:textColor="@color/wagba_main"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="@+id/guideline3"
+        tools:ignore="TextContrastCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.92" />
+
+    <ImageView
+        android:id="@+id/img_signup_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/wagba_text_logo_description"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toTopOf="@+id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/wagba_txt_logo"
+        tools:ignore="ImageContrastCheck" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <ImageButton
+        android:id="@+id/pw_visibility_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signup_pw"
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_pw"
+        app:layout_constraintTop_toTopOf="@+id/et_signup_pw"
+        app:srcCompat="@drawable/custom_visibility_icon" />
+
+    <ImageButton
+        android:id="@+id/confpw_visibility_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signup_pw_confirm"
+        app:layout_constraintEnd_toEndOf="@+id/et_signup_pw_confirm"
+        app:layout_constraintTop_toTopOf="@+id/et_signup_pw_confirm"
+        app:srcCompat="@drawable/custom_visibility_icon" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

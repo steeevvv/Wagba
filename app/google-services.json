@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "744325418480",
+    "project_id": "wagba-c9f53",
+    "storage_bucket": "wagba-c9f53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:744325418480:android:03256246899b3fa349e135",
+        "android_client_info": {
+          "package_name": "com.stivoo.wagba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "744325418480-j25i9coj0sclijljui26o2q657vbpj3n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stivoo.wagba",
+            "certificate_hash": "4c74c894e379c87b62a749b47a24ba62bf8d5923"
+          }
+        },
+        {
+          "client_id": "744325418480-qghll0nad75pqc60e29m2lj4o4t5fo5g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDDg3KdKnIH5GMX1UCaTmolDBFIoiH8hA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "744325418480-qghll0nad75pqc60e29m2lj4o4t5fo5g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

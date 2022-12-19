@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.restaurants.RestaurantFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/rd_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="0."
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_semibold"
+
+                android:gravity="center"
+                android:text="Restaurant Details"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
+
+            <View
+                android:id="@+id/horizontal_separator15"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0."
+                android:background="#DBDBDB"
+                android:elevation="6dp" />
+
+            <ImageView
+                android:id="@+id/rd_background"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="0."
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/cover_kfc" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.">
+
+                <View
+                    android:id="@+id/horizontal_separator19"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="12dp"
+                    android:background="#EFEFF1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rd_delivery_price" />
+
+                <TextView
+                    android:id="@+id/rd_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="KFC"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/rd_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/rd_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_weight="0."
+
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="center"
+                    android:text="Fried Chicken • Sandwich"
+                    android:textColor="@color/ChineseBlack_500"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/rd_logo"
+                    app:layout_constraintTop_toBottomOf="@+id/rd_name"
+                    tools:ignore="TextContrastCheck" />
+
+                <ImageView
+                    android:id="@+id/rd_logo"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/logo_kfc"
+                    app:layout_constraintBottom_toBottomOf="@+id/rd_delivery_price"
+                    app:layout_constraintEnd_toStartOf="@+id/guideline5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/rd_name"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_delivery"
+                    app:layout_constraintBottom_toBottomOf="@+id/rd_delivery_price"
+                    app:layout_constraintEnd_toStartOf="@+id/rd_delivery_price"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@+id/rd_logo"
+                    app:layout_constraintStart_toStartOf="@+id/rd_categories"
+                    app:layout_constraintTop_toTopOf="@+id/rd_delivery_price" />
+
+                <TextView
+                    android:id="@+id/rd_delivery_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="EGP 15.00"
+                    android:textColor="@color/wagba_main"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="@+id/rd_categories"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toEndOf="@+id/imageView9"
+                    app:layout_constraintTop_toBottomOf="@+id/rd_categories"
+                    tools:ignore="TextContrastCheck" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.35" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rd_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_separator19"
+                    app:spanCount="2"
+                    tools:itemCount="6"
+                    tools:listitem="@layout/restaurant_meal_card" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</FrameLayout>

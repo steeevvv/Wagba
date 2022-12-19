@@ -1,0 +1,23 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.Wagba" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/wagba_main</item>
+        <item name="colorPrimaryVariant">@color/wagba_main_100</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/wagba_secondary_100</item>
+        <item name="colorSecondaryVariant">@color/wagba_secondary_700</item>
+        <item name="colorOnSecondary">@color/ChineseBlack</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimary</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="EditTextTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@color/wagba_main</item>
+        <item name="colorControlActivated">@color/wagba_main_100</item>
+        <item name="colorControlHighlight">@color/wagba_secondary_100</item>
+    </style>
+
+</resources>

@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.meals.MealFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/cart_textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="0."
+                android:elevation="3dp"
+                android:fontFamily="@font/poppins_semibold"
+
+                android:gravity="center"
+                android:text="Meal Details"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="20sp"
+                tools:ignore="TextContrastCheck" />
+
+            <View
+                android:id="@+id/horizontal_separator17"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_weight="0"
+                android:elevation="6dp"
+                android:background="#DBDBDB" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_weight="0."
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                android:src="@drawable/meal_bigtasty" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="0.">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/cart_quantity_btn"
+                    android:elevation="2dp"
+                    android:orientation="horizontal"
+                    android:paddingStart="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingEnd="12dp"
+                    android:paddingBottom="6dp"
+                    android:scaleX="1"
+                    android:scaleY="1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_separator23">
+
+                    <Button
+                        android:id="@+id/cbtn_dec"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="-"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/ctv_quantity"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:gravity="center"
+                        android:text="1"
+                        android:textColor="@color/ChineseBlack" />
+
+                    <Button
+                        android:id="@+id/cbtn_inc"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:text="+"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/horizontal_separator23"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="0"
+                    android:background="#DBDBDB"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/oet_additional_info3" />
+
+                <EditText
+                    android:id="@+id/oet_additional_info3"
+                    android:layout_width="387dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="12dp"
+                    android:background="@drawable/custom_edittext_basic"
+                    android:ems="10"
+                    android:fontFamily="@font/poppins"
+                    android:hint="@string/type_any_additional_info_here"
+                    android:importantForAutofill="no"
+                    android:inputType="textPersonName"
+                    android:padding="12dp"
+                    android:textColorHighlight="@color/wagba_main_100"
+                    android:textColorLink="@color/wagba_main_100"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/m_desc_txt2"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/m_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="0."
+
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Big Tasty"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/m_desc_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Description"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/m_name"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_separator18"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/m_desc_txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="Any Special Requests?"
+                    android:textColor="@color/ChineseBlack"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toEndOf="@+id/imageView5"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_separator21"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/m_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="12dp"
+
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:gravity="center"
+                    android:text="EGP 114.99"
+                    android:textColor="@color/wagba_main"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/m_name"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/m_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins"
+
+                    android:gravity="center"
+                    android:text="Beef • Burger • Sandwich"
+                    android:textColor="@color/ChineseBlack_500"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@+id/m_name"
+                    app:layout_constraintTop_toBottomOf="@+id/m_name"
+                    tools:ignore="TextContrastCheck" />
+
+                <TextView
+                    android:id="@+id/m_categories2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+
+                    android:layout_marginEnd="12dp"
+                    android:layout_weight="0."
+                    android:elevation="3dp"
+                    android:fontFamily="@font/poppins"
+                    android:gravity="start"
+                    android:text="Tender beef pieces deep tried with fresh chickpea flour and spices. Marinated chicken pieces, dipped in a spicy batter and deep fried to an appealing gold perfection."
+                    android:textColor="@color/ChineseBlack_500"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/m_desc_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/m_desc_txt"
+                    tools:ignore="TextContrastCheck" />
+
+                <View
+                    android:id="@+id/horizontal_separator24"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="8dp"
+                    android:background="#EFEFF1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/m_categories2" />
+
+                <View
+                    android:id="@+id/horizontal_separator18"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6dp"
+                    android:layout_weight="0"
+                    android:background="#DBDBDB"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/m_categories" />
+
+                <View
+                    android:id="@+id/horizontal_separator21"
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:background="#EFEFF1"
+                    app:layout_constraintTop_toBottomOf="@+id/m_optionsRecyclerView"
+                    tools:layout_editor_absoluteX="0dp" />
+
+                <ImageView
+                    android:id="@+id/imageView5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/ic_req"
+                    app:layout_constraintBottom_toBottomOf="@+id/m_desc_txt2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/m_desc_txt2" />
+
+                <Button
+                    android:id="@+id/button"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Add to Cart"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
+                    app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/linearLayout2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/m_optionsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/horizontal_separator24"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/meal_option_row" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

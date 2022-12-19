@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    tools:context=".ui.ordertracking.OrderTrackingFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ot_title_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:gravity="center"
+            android:text="Order Tracking"
+
+            android:textColor="@color/ChineseBlack"
+            android:textSize="20sp"
+            tools:ignore="TextContrastCheck" />
+
+        <View
+            android:id="@+id/horizontal_separator13"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DBDBDB" />
+
+        <TextView
+            android:id="@+id/ot_id"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_semibold"
+
+            android:text="Order ID"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="18sp"
+            tools:ignore="TextContrastCheck" />
+
+        <TextView
+            android:id="@+id/ot_id_val"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginBottom="6dp"
+            android:fontFamily="@font/poppins"
+
+            android:text="#1122335"
+            android:textColor="@color/ChineseBlack_500"
+            android:textSize="16sp"
+            tools:ignore="TextContrastCheck" />
+
+        <View
+            android:id="@+id/horizontal_separator14"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:background="#EFEFF1"
+            app:layout_constraintTop_toBottomOf="@+id/CartSection1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/horizontal_separator16"
+                android:layout_width="2dp"
+                android:layout_height="0dp"
+                android:background="#DBDBDB"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+                app:layout_constraintEnd_toEndOf="@+id/imageView10"
+                app:layout_constraintStart_toStartOf="@+id/imageView10"
+                app:layout_constraintTop_toTopOf="@id/imageView2" />
+
+            <ImageView
+                android:id="@+id/imageView12"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="12dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/search_bar_bg"
+                android:padding="8dp"
+                android:src="@drawable/ic_track_delivery"
+                app:layout_constraintBottom_toBottomOf="@+id/ot_inprocess28"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess27" />
+
+            <TextView
+                android:id="@+id/ot_inprocess28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/poppins"
+                android:text="Your order is already on its way"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ot_inprocess24"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess27"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="--:--"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess27"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Delivery"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ot_inprocess25"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess24"
+                tools:ignore="TextContrastCheck" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/background_round_main"
+                android:padding="8dp"
+                android:src="@drawable/ic_track_cooking"
+                app:layout_constraintBottom_toBottomOf="@+id/ot_inprocess24"
+                app:layout_constraintStart_toStartOf="@+id/imageView10"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess25" />
+
+            <TextView
+                android:id="@+id/ot_inprocess24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/poppins"
+                android:text="Restaurant cooking your order"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ot_inprocess23"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess25"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="11:03"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess25"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Cooking"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ot_inprocess21"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess23"
+                tools:ignore="TextContrastCheck" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/background_round_main"
+                android:padding="8dp"
+                android:src="@drawable/ic_track_restaccept"
+                app:layout_constraintBottom_toBottomOf="@+id/ot_inprocess23"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess21" />
+
+            <TextView
+                android:id="@+id/ot_inprocess22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="10:38"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess21"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:fontFamily="@font/poppins"
+                android:text="Restaurant accepted your order"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ot_inprocess2"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess21"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginTop="48dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Confirmed"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@+id/ot_inprocess"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess2"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_timeline_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+
+                android:layout_marginTop="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Timeline"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TextContrastCheck" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="12dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/background_round_main"
+                android:hardwareAccelerated="false"
+                android:padding="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_track_check"
+                app:layout_constraintBottom_toBottomOf="@+id/ot_inprocess2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess" />
+
+            <TextView
+                android:id="@+id/ot_inprocess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="In Process"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/ot_timeline_txt"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="09:34"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ot_inprocess"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_inprocess2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginStart="12dp"
+                android:fontFamily="@font/poppins"
+                android:text="Successfully placed your order"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/ot_inprocess"
+                tools:ignore="TextContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</FrameLayout>

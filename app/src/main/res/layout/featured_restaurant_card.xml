@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/featured_restaurant_card_bg">
+
+
+        <ImageView
+            android:id="@+id/rest_cover"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+        <TextView
+            android:id="@+id/tv_delivery_fees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="Free Delivery"
+            android:textColor="@color/wagba_main"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/circle_img"
+            app:layout_constraintStart_toEndOf="@+id/imageView4"
+            app:layout_constraintTop_toBottomOf="@+id/tv_rest_name" />
+
+        <TextView
+            android:id="@+id/tv_rest_duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:fontFamily="@font/poppins"
+            android:paddingTop="6dp"
+            android:text="10-15 min"
+            android:textColor="@color/ChineseBlack_300"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delivery_fees"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
+            tools:ignore="TextContrastCheck" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/circle_img"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="12dp"
+            android:elevation="12dp"
+            android:padding="20dp"
+            app:cardCornerRadius="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rest_cover">
+
+            <ImageView
+                android:id="@+id/restaurant_logo"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:contentDescription="@string/category_icon_desc"
+                android:elevation="20dp"
+                android:scaleType="centerCrop"
+                tools:ignore="ImageContrastCheck"
+                tools:srcCompat="@tools:sample/avatars" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv_rest_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:paddingTop="6dp"
+            android:text="Restaurant Name"
+            android:textColor="@color/ChineseBlack"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/circle_img"
+            app:layout_constraintTop_toTopOf="@+id/circle_img" />
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:adjustViewBounds="true"
+            android:paddingLeft="12dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_delivery_fees"
+            app:layout_constraintStart_toEndOf="@+id/circle_img"
+            app:layout_constraintTop_toTopOf="@+id/tv_delivery_fees"
+            app:srcCompat="@drawable/ic_delivery"
+            tools:ignore="ImageContrastCheck" />
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:adjustViewBounds="true"
+            android:paddingTop="4dp"
+            android:paddingRight="3dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_rest_duration"
+            app:layout_constraintEnd_toStartOf="@+id/tv_rest_duration"
+            app:layout_constraintTop_toTopOf="@+id/imageView4"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_clock"
+            tools:ignore="ImageContrastCheck" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

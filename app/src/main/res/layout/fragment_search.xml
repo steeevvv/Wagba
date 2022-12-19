@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.search.SearchFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/SearchLayout_SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/search_bar_bg">
+
+            <ImageView
+                android:id="@+id/sfsearch_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/search_icon_desc"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_search"
+                app:layout_constraintBottom_toBottomOf="@+id/sffilter_img"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/sffilter_img"
+                tools:ignore="ImageContrastCheck" />
+
+            <EditText
+                android:id="@+id/sfsearch_txt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="6dp"
+                android:layout_marginEnd="6dp"
+                android:background="@null"
+                android:drawablePadding="12dp"
+                android:ems="10"
+                android:fontFamily="@font/poppins"
+                android:gravity="center_vertical"
+                android:hint="@string/search_hint"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:paddingStart="6dp"
+                android:paddingTop="10dp"
+                android:paddingEnd="6dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/ChineseBlack"
+                android:textCursorDrawable="@null"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/sfsearch_vertical_separator"
+                app:layout_constraintStart_toEndOf="@+id/sfsearch_img"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="TouchTargetSizeCheck,TextContrastCheck" />
+
+            <View
+                android:id="@+id/sfsearch_vertical_separator"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/MistBlue_500"
+                app:layout_constraintBottom_toBottomOf="@+id/sffilter_img"
+                app:layout_constraintEnd_toStartOf="@+id/sffilter_img"
+                app:layout_constraintTop_toTopOf="@+id/sffilter_img" />
+
+
+            <ImageView
+                android:id="@+id/sffilter_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/filter_icon_desc"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_filter"
+                app:layout_constraintBottom_toBottomOf="@+id/sfsearch_txt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/sfsearch_txt"
+                tools:ignore="ImageContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/s_recylcerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:spanCount="2"
+            tools:itemCount="12"
+            tools:listitem="@layout/search_result_card" />
+
+
+    </LinearLayout>
+</FrameLayout>
