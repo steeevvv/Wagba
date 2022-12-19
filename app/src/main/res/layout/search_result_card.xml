@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/sr_img"
-            android:layout_width="112dp"
-            android:layout_height="72dp"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
             android:layout_marginTop="12dp"
             android:adjustViewBounds="true"
             android:elevation="12dp"
@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
 
+            android:layout_marginBottom="6dp"
             android:layout_weight="0."
             android:elevation="3dp"
             android:fontFamily="@font/poppins_semibold"
@@ -44,23 +45,11 @@
             android:text="Mighty Zinger"
             android:textColor="@color/ChineseBlack"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sr_img"
             tools:ignore="TextContrastCheck" />
-
-        <Button
-            android:id="@+id/sr_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginBottom="6dp"
-            android:text="VIew"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/sr_name" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -54,6 +54,6 @@ public class HomeActivity extends AppCompatActivity {
 
     private void replaceFragment(Fragment fragment){
         FragmentManager fragm = getSupportFragmentManager();
-        fragm.beginTransaction().replace(R.id.frameLayout, fragment).commit();
+        fragm.beginTransaction().replace(R.id.frameLayout, fragment).addToBackStack(null).commit();
     }
 }

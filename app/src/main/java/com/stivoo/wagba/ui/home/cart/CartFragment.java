@@ -28,7 +28,7 @@ public class CartFragment extends Fragment {
     Button btn;
 
     public CartFragment() {
-        // Required empty public constructor
+
     }
 
 
