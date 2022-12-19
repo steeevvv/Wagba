@@ -12,17 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.RestaurantModel;
+import com.stivoo.wagba.ui.home.home.FeaturedRestaurantsRecyclerViewInterface;
 
 import java.util.ArrayList;
 
 public class SearchSimulationAdapter extends RecyclerView.Adapter<SearchSimulationAdapter.SearchSimulationViewHolder> {
 
-    private ArrayList<RestaurantModel> searchList = new ArrayList<>();
+    public SearchSimulationAdapter(FeaturedRestaurantsRecyclerViewInterface recyclerViewInterface) {
+        this.recyclerViewInterface = recyclerViewInterface;
+    }
+
+    private final FeaturedRestaurantsRecyclerViewInterface recyclerViewInterface;
+    private static ArrayList<RestaurantModel> searchList = new ArrayList<>();
 
     @NonNull
     @Override
     public SearchSimulationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SearchSimulationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.search_result_card, parent, false));
+        return new SearchSimulationViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.search_result_card, parent, false), recyclerViewInterface);
     }
 
     @Override
@@ -52,10 +58,20 @@ public class SearchSimulationAdapter extends RecyclerView.Adapter<SearchSimulati
             return img;
         }
 
-        public SearchSimulationViewHolder(@NonNull View itemView) {
+        public SearchSimulationViewHolder(@NonNull View itemView, FeaturedRestaurantsRecyclerViewInterface recyclerViewInterface) {
             super(itemView);
             img = itemView.findViewById(R.id.sr_img);
             txt = itemView.findViewById(R.id.sr_name);
+
+
+            itemView.setOnClickListener(v -> {
+                if (recyclerViewInterface != null){
+                    int pos = getAdapterPosition();
+                    if (pos != RecyclerView.NO_POSITION){
+                        recyclerViewInterface.onViewBtnClick(searchList.get(pos));
+                    }
+                }
+            });
         }
     }
 }
