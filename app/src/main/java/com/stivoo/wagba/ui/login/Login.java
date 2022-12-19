@@ -6,14 +6,19 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
+import com.stivoo.wagba.R;
 import com.stivoo.wagba.ui.home.HomeActivity;
 import com.stivoo.wagba.ui.signup.Signup;
 import com.stivoo.wagba.databinding.ActivityLoginBinding;
 import com.stivoo.wagba.ui.signup.SignupViewModel;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Login extends AppCompatActivity {
 
@@ -54,8 +59,28 @@ public class Login extends AppCompatActivity {
         binding.btnLoginLogin.setOnClickListener(v -> {
             String mail = binding.etSigninMail.getText().toString();
             String pw = binding.etSigninPw.getText().toString();
-            if (mail.length()>0 && pw.length()>0) {
+
+            if (mail.length()==0){
+                binding.etSigninMail.setError("Please enter an Email first");
+                binding.etSigninMail.setBackgroundResource(R.drawable.custom_input_err);
+            }
+            else if(pw.length()<8 || pw.length()>15){
+                binding.etSigninPw.setError("Please enter ana valid password");
+                binding.etSigninPw.setBackgroundResource(R.drawable.custom_input_err);
+            }
+            else{
                 loginViewModel.login(mail, pw);
+            }
+        });
+
+        AtomicInteger pw_visibilityToggle = new AtomicInteger();
+        binding.loginViewpwBtn.setOnClickListener(v->{
+            if (pw_visibilityToggle.getAndIncrement() % 2 == 0){
+                binding.loginViewpwBtn.setImageResource(R.drawable.custom_visibility_off_icon);
+                binding.etSigninPw.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+            } else{
+                binding.loginViewpwBtn.setImageResource(R.drawable.custom_visibility_icon);
+                binding.etSigninPw.setTransformationMethod(PasswordTransformationMethod.getInstance());
             }
         });
     }

@@ -36,7 +36,6 @@
         android:autofillHints=""
         android:background="@drawable/custom_input"
         android:drawableStart="@drawable/custom_pw_icon"
-        android:drawableEnd="@drawable/custom_visibility_icon"
         android:drawablePadding="10sp"
         android:ems="10"
         android:fontFamily="@font/poppins"
@@ -130,5 +129,18 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
+
+    <ImageButton
+        android:id="@+id/login_viewpw_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:background="#ffffff"
+        android:contentDescription="@string/viewpw"
+        app:layout_constraintBottom_toBottomOf="@+id/et_signin_pw"
+        app:layout_constraintEnd_toEndOf="@+id/et_signin_pw"
+        app:layout_constraintTop_toTopOf="@+id/et_signin_pw"
+        app:srcCompat="@drawable/ic_baseline_visibility"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,ImageContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
