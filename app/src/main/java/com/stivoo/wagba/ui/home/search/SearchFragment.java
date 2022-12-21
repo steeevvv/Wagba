@@ -7,6 +7,9 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -14,10 +17,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.MealModel;
 import com.stivoo.wagba.pojo.RestaurantModel;
 import com.stivoo.wagba.ui.home.home.FeaturedRestaurantsRecyclerViewInterface;
+import com.stivoo.wagba.ui.home.home.HomeFragmentViewModel;
 import com.stivoo.wagba.ui.meals.MealFragment;
 import com.stivoo.wagba.ui.restaurants.RestaurantFragment;
 
@@ -39,6 +44,23 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SearchViewModel searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+        LiveData<DataSnapshot> liveData = searchViewModel.getAllRestaurants();
+
+        liveData.observe(this, new Observer<DataSnapshot>() {
+            @Override
+            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                if (dataSnapshot != null) {
+                    restaurants = new ArrayList<>();
+                    for (DataSnapshot dataSnapshott: dataSnapshot.getChildren()){
+                        RestaurantModel rest = dataSnapshott.getValue(RestaurantModel.class);
+                            restaurants.add(rest);
+                    }
+                    adapter.setList(restaurants);
+                }
+            }
+        });
 
     }
 
