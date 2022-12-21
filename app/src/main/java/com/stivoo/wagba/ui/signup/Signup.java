@@ -53,10 +53,10 @@ public class Signup extends AppCompatActivity {
                 binding.etSignupName.setError("Please Fill in your name");
                 binding.etSignupName.setBackgroundResource(R.drawable.custom_input_err);
             }
-//          else if(!email.matches(emailPattern)) {
-//                binding.etSignupName.setBackgroundResource(R.drawable.custom_input);
-//                binding.etSignupMail.setError("Email must end with @eng.asu.edu.eg");
-//           }
+            else if(!email.matches(emailPattern)) {
+                binding.etSignupName.setBackgroundResource(R.drawable.custom_input);
+                binding.etSignupMail.setError("Email must end with @eng.asu.edu.eg");
+            }
             else if (phone.isEmpty()){
                 binding.etSignupPhone.setError("Please Fill in your Phone Number");
                 binding.etSignupPhone.setBackgroundResource(R.drawable.custom_input_err);
