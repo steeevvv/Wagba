@@ -1,5 +1,6 @@
 package com.stivoo.wagba.ui.home.home;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,12 +15,19 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.ui.home.RecyclerViewInterface;
 import com.stivoo.wagba.ui.meals.MealFragment;
@@ -38,6 +46,7 @@ public class HomeFragment extends Fragment implements FeaturedRestaurantsRecycle
     ArrayList<RestaurantModel> restaurants;
     ArrayList<MealModel>meals;
     TextView view_all_restaurant;
+    EditText search_val;
 
     public HomeFragment() {
 
@@ -127,6 +136,41 @@ public class HomeFragment extends Fragment implements FeaturedRestaurantsRecycle
         view_all_restaurant.setOnClickListener(v -> {
             FragmentManager fragm = getParentFragmentManager();
             fragm.beginTransaction().replace(R.id.frameLayout, new SearchFragment(restaurants)).addToBackStack(null).commit();
+        });
+
+        search_val = view.findViewById(R.id.search_txt);
+        search_val.setOnKeyListener(new View.OnKeyListener() {
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                    InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(search_val.getWindowToken(), 0);
+
+
+                    ArrayList<RestaurantModel> md = new ArrayList<>();
+                    Query nm = FirebaseDatabase.getInstance().getReference().child("Restaurants")
+                            .orderByChild("name").startAt(search_val.getText().toString()).endAt(search_val.getText().toString() +"~");
+                    nm.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                RestaurantModel rest = postSnapshot.getValue(RestaurantModel.class);
+                                md.add(rest);
+                            }
+                            FragmentManager fragm = getParentFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragm.beginTransaction();
+                            fragmentTransaction.replace(R.id.frameLayout, new SearchFragment(md));
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
+                    return true;
+                }
+                return false;
+            }
         });
 
     }

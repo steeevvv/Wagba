@@ -103,7 +103,7 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
 
                     ArrayList<RestaurantModel> md = new ArrayList<>();
                     Query nm = FirebaseDatabase.getInstance().getReference().child("Restaurants")
-                            .orderByChild("name").startAt(search_val.getText().toString()).endAt(search_val.getText().toString() + "~");
+                            .orderByChild("name").startAt(search_val.getText().toString()).endAt(search_val.getText().toString() +"~");
                     nm.addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {

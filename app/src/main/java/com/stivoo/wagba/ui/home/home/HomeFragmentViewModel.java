@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.stivoo.wagba.FirebaseQueryLiveData;
 
 public class HomeFragmentViewModel extends ViewModel {
@@ -18,7 +19,6 @@ public class HomeFragmentViewModel extends ViewModel {
     private static final DatabaseReference MEALS_REF =
             FirebaseDatabase.getInstance().getReference("/FeaturedMeals");
     private final FirebaseQueryLiveData liveMeals = new FirebaseQueryLiveData(MEALS_REF);
-
 
     @NonNull
     public LiveData<DataSnapshot> getDataSnapshotLiveData() {
