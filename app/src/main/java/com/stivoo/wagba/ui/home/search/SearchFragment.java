@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.stivoo.wagba.FirebaseQueryLiveData;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.MealModel;
 import com.stivoo.wagba.pojo.RestaurantModel;
@@ -39,7 +45,7 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
     SearchSimulationAdapter adapter = new SearchSimulationAdapter(this);
 
     EditText search_val;
-
+    SearchViewModel searchViewModel;
 
     public SearchFragment() {
     }
@@ -54,9 +60,8 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
         super.onCreate(savedInstanceState);
 
         if (restaurants == null) {
-            SearchViewModel searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+            searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
             LiveData<DataSnapshot> liveData = searchViewModel.getAllRestaurants();
-
             liveData.observe(this, new Observer<DataSnapshot>() {
                 @Override
                 public void onChanged(@Nullable DataSnapshot dataSnapshot) {
@@ -93,15 +98,30 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                    Toast.makeText(getContext(), search_val.getText().toString(), Toast.LENGTH_SHORT).show();
                     InputMethodManager imm = (InputMethodManager) getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(search_val.getWindowToken(), 0);
+
+                    ArrayList<RestaurantModel> md = new ArrayList<>();
+                    Query nm = FirebaseDatabase.getInstance().getReference().child("Restaurants")
+                            .orderByChild("name").startAt(search_val.getText().toString()).endAt(search_val.getText().toString() + "~");
+                    nm.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                                RestaurantModel rest = postSnapshot.getValue(RestaurantModel.class);
+                                md.add(rest);
+                            }
+                            adapter.setList(md);
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                        }
+                    });
                     return true;
                 }
                 return false;
             }
         });
-
     }
 
     @Override
