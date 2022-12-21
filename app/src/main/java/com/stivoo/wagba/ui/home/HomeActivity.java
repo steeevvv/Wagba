@@ -42,8 +42,7 @@ public class HomeActivity extends AppCompatActivity {
                     replaceFragment(new CartFragment());
                     break;
                 case R.id.Search:
-                    ArrayList<RestaurantModel> rests = new ArrayList<>();
-                    replaceFragment(new SearchFragment(rests));
+                    replaceFragment(new SearchFragment());
                     break;
             }
 

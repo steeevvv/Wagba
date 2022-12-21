@@ -31,39 +31,40 @@ import java.util.ArrayList;
 public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyclerViewInterface {
 
     ArrayList<RestaurantModel> restaurants;
-    public SearchFragment() {
+    SearchSimulationAdapter adapter = new SearchSimulationAdapter(this);
 
+
+    public SearchFragment() {
     }
 
     public SearchFragment(ArrayList<RestaurantModel> rest){
         restaurants = rest;
+        adapter.setList(restaurants);
     }
-
-    SearchSimulationAdapter adapter = new SearchSimulationAdapter(this);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SearchViewModel searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
-        LiveData<DataSnapshot> liveData = searchViewModel.getAllRestaurants();
+        if (restaurants == null) {
+            SearchViewModel searchViewModel = new ViewModelProvider(this).get(SearchViewModel.class);
+            LiveData<DataSnapshot> liveData = searchViewModel.getAllRestaurants();
 
-        liveData.observe(this, new Observer<DataSnapshot>() {
-            @Override
-            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null) {
-                    restaurants = new ArrayList<>();
-                    for (DataSnapshot dataSnapshott: dataSnapshot.getChildren()){
-                        RestaurantModel rest = dataSnapshott.getValue(RestaurantModel.class);
+            liveData.observe(this, new Observer<DataSnapshot>() {
+                @Override
+                public void onChanged(@Nullable DataSnapshot dataSnapshot) {
+                    if (dataSnapshot != null) {
+                        restaurants = new ArrayList<>();
+                        for (DataSnapshot dataSnapshott : dataSnapshot.getChildren()) {
+                            RestaurantModel rest = dataSnapshott.getValue(RestaurantModel.class);
                             restaurants.add(rest);
+                        }
+                        adapter.setList(restaurants);
                     }
-                    adapter.setList(restaurants);
                 }
-            }
-        });
-
+            });
+        }
     }
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,7 +76,6 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        adapter.setList(restaurants);
         RecyclerView recycler = view.findViewById(R.id.s_recylcerView);
         recycler.setNestedScrollingEnabled(false);
         recycler.setAdapter(adapter);
