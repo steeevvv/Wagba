@@ -49,16 +49,30 @@ public class Signup extends AppCompatActivity {
             Matcher m = p.matcher(pw);
             boolean b = m.find();
 
-//            if(!email.matches(emailPattern)) {
+            if(name.isEmpty()){
+                binding.etSignupName.setError("Please Fill in your name");
+                binding.etSignupName.setBackgroundResource(R.drawable.custom_input_err);
+            }
+//          else if(!email.matches(emailPattern)) {
+//                binding.etSignupName.setBackgroundResource(R.drawable.custom_input);
 //                binding.etSignupMail.setError("Email must end with @eng.asu.edu.eg");
-//            }else
-
-                if  (!(pw.length()>8 && pw.length()<16)) {
+//           }
+            else if (phone.isEmpty()){
+                binding.etSignupPhone.setError("Please Fill in your Phone Number");
+                binding.etSignupPhone.setBackgroundResource(R.drawable.custom_input_err);
+            }
+            else if (!(pw.length()>8 && pw.length()<16)) {
+                binding.etSignupPhone.setBackgroundResource(R.drawable.custom_input);
                 binding.etSignupPw.setError("Password's length must be between 8 and 16");
-            }else if(!(pw.equals(binding.etSignupPwConfirm.getText().toString()))){
-                binding.etSignupPwConfirm.setError("Password doesn't match");
+                binding.etSignupPw.setBackgroundResource(R.drawable.custom_input_err);
             }else if(!b){
                 binding.etSignupPw.setError("Password must include at least one special character");
+                binding.etSignupPw.setBackgroundResource(R.drawable.custom_input_err);
+            }
+            else if(!(pw.equals(binding.etSignupPwConfirm.getText().toString()))){
+                binding.etSignupPw.setBackgroundResource(R.drawable.custom_input);
+                binding.etSignupPwConfirm.setError("Password doesn't match");
+                binding.etSignupPwConfirm.setBackgroundResource(R.drawable.custom_input_err);
             }
             else{
                 signupViewModel.register(email, pw, name, phone);
