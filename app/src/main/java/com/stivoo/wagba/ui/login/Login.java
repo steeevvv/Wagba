@@ -9,14 +9,13 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.ui.home.HomeActivity;
+import com.stivoo.wagba.ui.passwordReset.ForgotPassword;
 import com.stivoo.wagba.ui.signup.Signup;
 import com.stivoo.wagba.databinding.ActivityLoginBinding;
-import com.stivoo.wagba.ui.signup.SignupViewModel;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -25,6 +24,7 @@ public class Login extends AppCompatActivity {
     ActivityLoginBinding binding;
     Intent go_to_signup_intent;
     Intent go_to_homepage_intent;
+    Intent go_to_forget_password;
     private LoginViewModel loginViewModel;
 
 
@@ -50,10 +50,15 @@ public class Login extends AppCompatActivity {
 
         go_to_signup_intent = new Intent(this, Signup.class);
         go_to_homepage_intent = new Intent(this, HomeActivity.class);
+        go_to_forget_password = new Intent(this, ForgotPassword.class);
 
         binding.tvSignupLoginbtn.setOnClickListener(v -> {
             startActivity(go_to_signup_intent);
             finish();
+        });
+
+        binding.tvSigninForgotpw.setOnClickListener(v -> {
+            startActivity(go_to_forget_password);
         });
 
         binding.btnLoginLogin.setOnClickListener(v -> {
@@ -64,10 +69,10 @@ public class Login extends AppCompatActivity {
                 binding.etSigninMail.setError("Please enter an Email first");
                 binding.etSigninMail.setBackgroundResource(R.drawable.custom_input_err);
             }
-            else if(pw.length()<8 || pw.length()>15){
-                binding.etSigninPw.setError("Please enter ana valid password");
-                binding.etSigninPw.setBackgroundResource(R.drawable.custom_input_err);
-            }
+//            else if(pw.length()<8 || pw.length()>15){
+//                binding.etSigninPw.setError("Please enter a valid password");
+//                binding.etSigninPw.setBackgroundResource(R.drawable.custom_input_err);
+//            }
             else{
                 loginViewModel.login(mail, pw);
             }

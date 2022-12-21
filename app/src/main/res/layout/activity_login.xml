@@ -83,7 +83,8 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins"
         android:text="@string/txt_forgotPw"
-        android:textColor="#000000"
+        android:textColor="@color/wagba_main"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btn_login_login"
         app:layout_constraintEnd_toEndOf="@+id/et_signin_pw"
         app:layout_constraintTop_toBottomOf="@+id/et_signin_pw" />
