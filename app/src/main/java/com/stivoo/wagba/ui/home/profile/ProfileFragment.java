@@ -45,7 +45,6 @@ public class ProfileFragment extends Fragment {
     EditText tv_email;
     EditText tv_name;
     EditText tv_number;
-
     ImageView profile_img;
 
     public ProfileFragment() {
@@ -80,6 +79,9 @@ public class ProfileFragment extends Fragment {
                     tv_email.setText(x.getEmail());
                     tv_name.setText(x.getName());
                     tv_number.setText(x.getPhone());
+                    Glide.with(getContext())
+                            .load(userModels.getPicture())
+                            .into(profile_img);
                     Log.d("TTAAGG", userModels.toString());
                 }else{
                     LiveData<DataSnapshot> liveData = profileViewModel.getDataSnapshotLiveData();
@@ -98,9 +100,7 @@ public class ProfileFragment extends Fragment {
                     });
                 }
             }
-        }); //get all data
-//        profileViewModel.update(new UserModel("Steven", "steven@hotmail.com", "01280445538", "blabla"));
-
+        });
     }
 
     @Override

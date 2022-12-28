@@ -122,7 +122,6 @@ public class HomeFragment extends Fragment implements FeaturedRestaurantsRecycle
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
-
         RecyclerView recycler1 = view.findViewById(R.id.m2RecyclerView);
         recycler1.setNestedScrollingEnabled(false);
         recycler1.setAdapter(adapter1);
