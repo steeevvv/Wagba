@@ -19,15 +19,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.ui.login.Login;
 import com.stivoo.wagba.ui.previousorders.PreviousOrdersFragment;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.ui.signup.Signup;
 
+import java.util.List;
 import java.util.Locale;
 
 public class ProfileFragment extends Fragment {
@@ -44,6 +47,8 @@ public class ProfileFragment extends Fragment {
 
     }
 
+
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +64,21 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
+
+
+        profileViewModel.insert(new UserModel("Steven", "steven@gmail.com", "01280445538", "blabla"));
+        profileViewModel.getUsers().observe(this, new Observer<List<UserModel>>() {
+            @Override
+            public void onChanged(List<UserModel> userModels) {
+                UserModel x = new UserModel(userModels.get(0).getName(),
+                        userModels.get(0).getEmail(),
+                        userModels.get(0).getPhone(),
+                        userModels.get(0).getPicture());
+                Log.d("TTAAGG", x.toString());
+            }
+        }); //get all data
+//        profileViewModel.update(new UserModel("Steven", "steven@hotmail.com", "01280445538", "blabla"));
+
 
         LiveData<DataSnapshot> liveData = profileViewModel.getDataSnapshotLiveData();
 

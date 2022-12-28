@@ -1,7 +1,6 @@
 package com.stivoo.wagba.ui.signup;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
@@ -9,9 +8,7 @@ import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseUser;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.databinding.ActivitySignupBinding;
 import com.stivoo.wagba.ui.login.Login;

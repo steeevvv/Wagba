@@ -12,7 +12,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.repositories.AuthRepository;
+import com.stivoo.wagba.repositories.UserRepository;
+
+import java.util.List;
 
 public class ProfileViewModel extends AndroidViewModel {
 
@@ -20,8 +24,18 @@ public class ProfileViewModel extends AndroidViewModel {
     private MutableLiveData<FirebaseUser> userMutableLiveData;
     private MutableLiveData<Boolean> loggedOutMutableLiveData;
 
+
+    private UserRepository repository ;
+    private LiveData<List<UserModel>> users;
+
+
+
+
     public ProfileViewModel(@NonNull Application application) {
         super(application);
+
+        repository = new UserRepository(application);
+        users = repository.getUsers();
 
         appRepository = new AuthRepository(application);
         userMutableLiveData = appRepository.getUserMutableLiveData();
@@ -53,5 +67,16 @@ public class ProfileViewModel extends AndroidViewModel {
 
     public String getUid() {
         return appRepository.getUid();
+    }
+
+    public void insert(UserModel user) {
+        repository.insert(user);
+    }
+    public void update(UserModel user) {
+        repository.update(user);
+    }
+
+    public LiveData<List<UserModel>> getUsers() {
+        return users;
     }
 }

@@ -5,17 +5,12 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
-
-import com.stivoo.wagba.pojo.RestaurantModel;
 import com.stivoo.wagba.ui.home.cart.CartFragment;
 import com.stivoo.wagba.ui.home.home.HomeFragment;
 import com.stivoo.wagba.ui.home.profile.ProfileFragment;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.ui.home.search.SearchFragment;
 import com.stivoo.wagba.databinding.ActivityHomeBinding;
-
-import java.util.ArrayList;
-
 public class HomeActivity extends AppCompatActivity {
 
     ActivityHomeBinding binding;
