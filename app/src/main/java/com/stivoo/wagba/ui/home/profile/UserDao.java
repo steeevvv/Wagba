@@ -16,6 +16,10 @@ public interface UserDao {
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void Update(UserModel user);
 
+    @Query("UPDATE orders SET order_price=:price WHERE order_id = :id")
+    void update(Float price, int id);
+
+
     @Query("SELECT * FROM user_data where id = :idd")
     LiveData<UserModel> getUser(String idd);
 }
