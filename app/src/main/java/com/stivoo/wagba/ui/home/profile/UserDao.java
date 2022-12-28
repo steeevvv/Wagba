@@ -10,7 +10,7 @@ import com.stivoo.wagba.pojo.UserModel;
 
 @Dao
 public interface UserDao {
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void Insert(UserModel user);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)

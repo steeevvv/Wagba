@@ -81,25 +81,26 @@ public class ProfileFragment extends Fragment {
                     tv_name.setText(x.getName());
                     tv_number.setText(x.getPhone());
                     Log.d("TTAAGG", userModels.toString());
+                }else{
+                    LiveData<DataSnapshot> liveData = profileViewModel.getDataSnapshotLiveData();
+                    liveData.observe(ProfileFragment.this, dataSnapshot -> {
+                        if (dataSnapshot != null) {
+                            String name = dataSnapshot.child(profileViewModel.getUid()).child("name").getValue(String.class);
+                            String mail = dataSnapshot.child(profileViewModel.getUid()).child("mail").getValue(String.class);
+                            String phone = dataSnapshot.child(profileViewModel.getUid()).child("phone").getValue(String.class);
+                            String img = dataSnapshot.child(profileViewModel.getUid()).child("profile_img").getValue(String.class);
+                            Glide.with(getContext())
+                                    .load(img)
+                                    .into(profile_img);
+                            UserModel x = new UserModel(FirebaseAuth.getInstance().getUid(),name,mail,phone, img);
+                            profileViewModel.insert(x);
+                        }
+                    });
                 }
             }
         }); //get all data
 //        profileViewModel.update(new UserModel("Steven", "steven@hotmail.com", "01280445538", "blabla"));
 
-
-        LiveData<DataSnapshot> liveData = profileViewModel.getDataSnapshotLiveData();
-
-        liveData.observe(this, dataSnapshot -> {
-            if (dataSnapshot != null) {
-                String name = dataSnapshot.child(profileViewModel.getUid()).child("name").getValue(String.class);
-                String mail = dataSnapshot.child(profileViewModel.getUid()).child("mail").getValue(String.class);
-                String img = dataSnapshot.child(profileViewModel.getUid()).child("profile_img").getValue(String.class);
-                Glide.with(getContext())
-                        .load(img)
-                        .into(profile_img);
-
-            }
-        });
     }
 
     @Override
@@ -133,18 +134,16 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        tv_name.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
 
-//        tv_name.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-//                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-//                    UserModel x = new UserModel(tv_name.getText().toString(), "","","");
-//                        profileViewModel.insert(x);
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }

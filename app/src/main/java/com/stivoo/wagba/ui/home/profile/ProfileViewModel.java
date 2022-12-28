@@ -62,6 +62,10 @@ public class ProfileViewModel extends AndroidViewModel {
         return appRepository.getUid();
     }
 
+    public void insert(UserModel user){
+        appRepository.insert(user);
+    }
+
     public void update(UserModel user) {
         appRepository.update(user);
     }
