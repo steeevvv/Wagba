@@ -20,24 +20,17 @@ import com.stivoo.wagba.repositories.UserRepository;
 import java.util.List;
 
 public class ProfileViewModel extends AndroidViewModel {
-
     private AuthRepository appRepository;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
     private MutableLiveData<Boolean> loggedOutMutableLiveData;
-
     private FirebaseAuth firebaseAuth;
-    private UserRepository repository ;
     private LiveData<UserModel> user_data;
-
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
-
-        repository = new UserRepository(application);
-        firebaseAuth = FirebaseAuth.getInstance();
-        user_data = repository.getUsers(firebaseAuth.getCurrentUser().getUid());
-
         appRepository = new AuthRepository(application);
+        firebaseAuth = FirebaseAuth.getInstance();
+        user_data = appRepository.getUsers(firebaseAuth.getCurrentUser().getUid());
         userMutableLiveData = appRepository.getUserMutableLiveData();
         loggedOutMutableLiveData = appRepository.getLogOutMutableLiveData();
     }
@@ -69,15 +62,11 @@ public class ProfileViewModel extends AndroidViewModel {
         return appRepository.getUid();
     }
 
-    public void insert(UserModel user) {
-        repository.insert(user);
-    }
-
     public void update(UserModel user) {
-        repository.update(user);
+        appRepository.update(user);
     }
 
-    public LiveData<UserModel> getUsers() {
+    public LiveData<UserModel> getUsers(String id) {
         return user_data;
     }
 }

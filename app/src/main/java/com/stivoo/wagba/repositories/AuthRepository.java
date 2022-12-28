@@ -1,12 +1,14 @@
 package com.stivoo.wagba.repositories;
 
 import android.app.Application;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +22,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.stivoo.wagba.pojo.UserModel;
+import com.stivoo.wagba.ui.home.profile.UserDao;
+import com.stivoo.wagba.ui.home.profile.UserDatabase;
 
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -27,6 +32,9 @@ import java.util.Locale;
 import java.util.Random;
 
 public class AuthRepository {
+    private UserDao userDao;
+    private LiveData<UserModel> users;
+
 
     private Application application;
     private MutableLiveData<FirebaseUser> userMutableLiveData;
@@ -50,6 +58,11 @@ public class AuthRepository {
             userMutableLiveData.postValue(firebaseAuth.getCurrentUser());
             logOutMutableLiveData.postValue(false);
         }
+
+        UserDatabase database = UserDatabase.getInstance(application);
+        userDao = database.userDao();
+
+        users = userDao.getUser(firebaseAuth.getUid());
     }
 
     public void register(String mail, String password, String name, String phone) {
@@ -65,22 +78,14 @@ public class AuthRepository {
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("name").setValue(name);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("phone").setValue(phone);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("profile_img").setValue("");
+                                UserModel x = new UserModel(task.getResult().getUser().getUid(), name, mail,phone,"");
+                                insert(x);
                             } else {
                                 Toast.makeText(application, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
         }
-
-
-//        byte[] array = new byte[7]; // length is bounded by 7
-//        new Random().nextBytes(array);
-//        String generatedString = new String(array, StandardCharsets.UTF_8);
-
-//        String generatedString = myRef.push().getKey();
-
-
-//                        myRef.child("Users").child(generatedString).child("uid").setValue(firebaseAuth.getCurrentUser().getUid().toString());
         firebaseAuth.signOut();
     }
 
@@ -150,4 +155,42 @@ public class AuthRepository {
         }
         return "null";
     }
+
+
+    public void insert(UserModel user) {
+        new AuthRepository.InsertUserAsyncTask(userDao).execute(user);
+    }
+
+    public void update(UserModel user) {
+        new AuthRepository.UpdateUserAsyncTask(userDao).execute(user);
+    }
+
+    public LiveData<UserModel> getUsers(String id) {
+        return users;
+    }
+
+    private static class InsertUserAsyncTask extends AsyncTask<UserModel, Void, Void> {
+        private UserDao userDao;
+        private InsertUserAsyncTask(UserDao userDao) {
+            this.userDao = userDao;
+        }
+        @Override
+        protected Void doInBackground(UserModel... users) {
+            userDao.Insert(users[0]);
+            return null;
+        }
+    }
+
+    private static class UpdateUserAsyncTask extends AsyncTask<UserModel, Void, Void> {
+        private UserDao userDao;
+        private UpdateUserAsyncTask(UserDao userDao) { //constructor as the class is static
+            this.userDao = userDao;
+        }
+        @Override
+        protected Void doInBackground(UserModel... users) {
+            userDao.Update(users[0]);
+            return null;
+        }
+    }
+
 }

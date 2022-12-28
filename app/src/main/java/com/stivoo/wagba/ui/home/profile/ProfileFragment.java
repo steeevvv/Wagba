@@ -68,10 +68,10 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        profileViewModel.insert(new UserModel(FirebaseAuth.getInstance().getUid(),"Steven", "steven@hotmail.com", "01280445538", "blabla"));
-        profileViewModel.getUsers().observe(this, new Observer<UserModel>() {
+        profileViewModel.getUsers(FirebaseAuth.getInstance().getCurrentUser().getUid()).observe(this, new Observer<UserModel>() {
             @Override
             public void onChanged(UserModel userModels) {
+                if (userModels != null) {
                     UserModel x = new UserModel(userModels.getId(),
                             userModels.getName(),
                             userModels.getEmail(),
@@ -81,6 +81,7 @@ public class ProfileFragment extends Fragment {
                     tv_name.setText(x.getName());
                     tv_number.setText(x.getPhone());
                     Log.d("TTAAGG", userModels.toString());
+                }
             }
         }); //get all data
 //        profileViewModel.update(new UserModel("Steven", "steven@hotmail.com", "01280445538", "blabla"));
