@@ -8,6 +8,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
@@ -24,18 +25,17 @@ public class ProfileViewModel extends AndroidViewModel {
     private MutableLiveData<FirebaseUser> userMutableLiveData;
     private MutableLiveData<Boolean> loggedOutMutableLiveData;
 
-
+    private FirebaseAuth firebaseAuth;
     private UserRepository repository ;
-    private LiveData<List<UserModel>> users;
-
-
+    private LiveData<UserModel> user_data;
 
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);
 
         repository = new UserRepository(application);
-        users = repository.getUsers();
+        firebaseAuth = FirebaseAuth.getInstance();
+        user_data = repository.getUsers(firebaseAuth.getCurrentUser().getUid());
 
         appRepository = new AuthRepository(application);
         userMutableLiveData = appRepository.getUserMutableLiveData();
@@ -72,11 +72,12 @@ public class ProfileViewModel extends AndroidViewModel {
     public void insert(UserModel user) {
         repository.insert(user);
     }
+
     public void update(UserModel user) {
         repository.update(user);
     }
 
-    public LiveData<List<UserModel>> getUsers() {
-        return users;
+    public LiveData<UserModel> getUsers() {
+        return user_data;
     }
 }

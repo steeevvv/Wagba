@@ -6,23 +6,25 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "user_data")
 public class UserModel {
 
-    @PrimaryKey (autoGenerate = true)
-    private int id;
+    @PrimaryKey
+    @NonNull
+    private String id;
 
     private String name;
     private String email;
     private String phone;
     private String picture;
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public UserModel(String name, String email, String phone, String picture) {
+    public UserModel(String id, String name, String email, String phone, String picture) {
+        this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
@@ -40,7 +42,7 @@ public class UserModel {
     @Override
     public String toString() {
         return "UserModel{" +
-                "id=" + id +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +

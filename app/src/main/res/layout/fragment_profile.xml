@@ -11,6 +11,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <EditText
+            android:id="@+id/tv_profile_email"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_mail_icon"
+            android:drawablePadding="10sp"
+            android:fontFamily="@font/poppins"
+            android:hint="@string/hint_mail"
+            android:inputType="textEmailAddress"
+            android:padding="12dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintBottom_toTopOf="@+id/tv_profile_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/tv_profile_number"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_mail_icon"
+            android:drawablePadding="10sp"
+            android:fontFamily="@font/poppins"
+            android:hint="Enter your phone number"
+            android:inputType="phone"
+            android:padding="12dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintBottom_toTopOf="@+id/guideline7"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_profile_email"
+            tools:ignore="TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/tv_profile_name"
+            android:layout_width="363dp"
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:background="@drawable/custom_input"
+            android:drawableStart="@drawable/custom_mail_icon"
+            android:drawablePadding="10sp"
+            android:fontFamily="@font/poppins"
+            android:hint="Enter your name"
+            android:inputType="textPersonName"
+            android:padding="12dp"
+            android:theme="@style/EditTextTheme"
+            app:layout_constraintBottom_toTopOf="@+id/tv_profile_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline10"
+            tools:ignore="TextContrastCheck" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/profile_img_card"
             android:layout_width="200dp"
@@ -22,7 +79,7 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline10"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline6">
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/profile_img"
@@ -35,39 +92,6 @@
                 tools:ignore="ImageContrastCheck" />
         </androidx.cardview.widget.CardView>
 
-
-        <TextView
-            android:id="@+id/tv_profile_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins_semibold"
-            android:paddingTop="6dp"
-            android:text="18P9325@eng.asu.edu.eg"
-            android:textColor="@color/ChineseBlack"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline9"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_profile_name" />
-
-        <TextView
-            android:id="@+id/tv_profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins_semibold"
-            android:paddingTop="6dp"
-            android:text="Steven Sameh"
-            android:textColor="@color/ChineseBlack"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/tv_profile_email"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline10"
-            app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
             android:id="@+id/btn_viewOrders"
@@ -93,46 +117,25 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Signout"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline8"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_viewOrders" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.15" />
-
-        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.7" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.9" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.65" />
+            app:layout_constraintGuide_percent="0.8" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline10"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.42407662" />
+            app:layout_constraintGuide_percent="0.38" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

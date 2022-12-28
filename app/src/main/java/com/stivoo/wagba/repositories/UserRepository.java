@@ -5,20 +5,21 @@ import android.os.AsyncTask;
 
 import androidx.lifecycle.LiveData;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.ui.home.profile.UserDao;
 import com.stivoo.wagba.ui.home.profile.UserDatabase;
 
-import java.util.List;
-
 public class UserRepository {
     private UserDao userDao;
-    private LiveData<List<UserModel>> users;
+    private LiveData<UserModel> users;
+    FirebaseAuth firebaseAuth;
 
-    public UserRepository(Application application) { //application is subclass of context
+    public UserRepository(Application application) {
         UserDatabase database = UserDatabase.getInstance(application);
         userDao = database.userDao();
-        users = userDao.getUser();
+        firebaseAuth = FirebaseAuth.getInstance();
+        users = userDao.getUser(firebaseAuth.getCurrentUser().getUid());
     }
 
     public void insert(UserModel user) {
@@ -29,7 +30,7 @@ public class UserRepository {
         new UserRepository.UpdateUserAsyncTask(userDao).execute(user);
     }
 
-    public LiveData<List<UserModel>> getUsers() {
+    public LiveData<UserModel> getUsers(String id) {
         return users;
     }
 
