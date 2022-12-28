@@ -11,8 +11,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.stivoo.wagba.R;
@@ -28,6 +30,11 @@ public class MealFragment extends Fragment {
     TextView categories;
     TextView price;
     TextView description;
+
+    Button add_to_cart;
+    Button inc;
+    Button dec;
+    TextView amt;
 
 
     public MealFragment(MealModel meal) {
@@ -78,5 +85,26 @@ public class MealFragment extends Fragment {
         //TODO
         String cats = String.join(" • ", "Shawerma", "Beef");
         categories.setText(cats);
+
+        add_to_cart = view.findViewById(R.id.add_to_cart_btn);
+        inc = view.findViewById(R.id.cbtn_inc);
+        dec = view.findViewById(R.id.cbtn_dec);
+        amt = view.findViewById(R.id.ctv_quantity);
+
+        add_to_cart.setOnClickListener(v -> {
+
+        });
+
+        inc.setOnClickListener(v -> {
+            amt.setText(String.valueOf(Integer.parseInt(amt.getText().toString()) + 1));
+        });
+
+        dec.setOnClickListener(v -> {
+            if(Integer.parseInt(amt.getText().toString()) > 0) {
+                amt.setText(String.valueOf(Integer.parseInt(amt.getText().toString()) - 1));
+            }else{
+                Toast.makeText(getContext(), "Can't Decrement than 0!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
