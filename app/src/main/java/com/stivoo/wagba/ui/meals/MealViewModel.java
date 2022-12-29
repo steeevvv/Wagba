@@ -49,4 +49,5 @@ public class MealViewModel extends ViewModel {
         };
         CHECK_REF.child(meal.getName()).addListenerForSingleValueEvent(eventListener);
     }
+
 }

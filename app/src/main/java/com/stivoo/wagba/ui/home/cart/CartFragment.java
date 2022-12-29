@@ -78,13 +78,6 @@ public class CartFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        //TODO
-        cartMeals = new ArrayList<>();
-        cartMeals.add(new MealModel("Big Mac", "", "EGP 69.99", "The McDonald's Big Mac® is a 100% beef burger with a taste like no other.  It's topped off with pickles, crisp shredded lettuce, finely chopped onion, and a slice of American cheese.", 5, "McDonald's"));
-        cartMeals.add(new MealModel("Chicken Ranch Pizza", "", "EGP 129.99", "A delicious, tempting Papa John's Pizza classic with perfectly grilled, succulent chicken, fresh, tender mushrooms, tomatoes and spicy jalapeno peppers with a tangy ranch sauce!",9, "KFC"));
-        cartMeals.add(new MealModel("Big Tasty", "", "EGP 99.99", "A big and tasty beef patty smothered in our one of a kind Big Tasty Sauce and 3 slices of emmental cheese, dressed with 2 slices of tomato, a handful of crispy shredded lettuce and slivered onions.",4,"PAPA"));
-
         return inflater.inflate(R.layout.fragment_cart, container, false);
     }
 
@@ -100,7 +93,6 @@ public class CartFragment extends Fragment {
 //                FragmentTransaction fragmentTransaction = fragm.beginTransaction();
 //                fragmentTransaction.replace(R.id.frameLayout, new OrderConfirmationFragment());
 //                fragmentTransaction.commit();
-
             }
         });
 
