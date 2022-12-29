@@ -61,6 +61,12 @@ public class CartFragment extends Fragment {
                         cartItems.add(item);
                     }
                     adapter.setList(cartItems);
+                    if (cartItems.size() == 0){
+                        FragmentManager fragm = getParentFragmentManager();
+                        FragmentTransaction fragmentTransaction = fragm.beginTransaction();
+                        fragmentTransaction.replace(R.id.frameLayout, new EmptyCartFragment());
+                        fragmentTransaction.commit();
+                    }
                 }
             }
         });

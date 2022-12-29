@@ -1,5 +1,7 @@
 package com.stivoo.wagba.ui.home.cart;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -104,14 +106,49 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             });
 
             dec.setOnClickListener(v -> {
+                final DatabaseReference CART_REF = FirebaseDatabase.getInstance().getReference("/CurrentCart");
+                final DatabaseReference CHECK_REF =
+                        FirebaseDatabase.getInstance().getReference("/CurrentCart"+"/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+
+                if(Integer.parseInt(qty.getText().toString()) == 1) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(dec.getContext());
+
+                    builder.setTitle("ALERT!!!");
+                    builder.setMessage("Are you sure you want to delete this item from the Cart?")
+                            .setCancelable(false)
+                            .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    int pos = getAdapterPosition();
+                                    removeAt(pos);
+
+                                    ValueEventListener eventListener2 = new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(DataSnapshot dataSnapshot) {
+                                            if(dataSnapshot.exists()) {
+                                                CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(name.getText().toString()).removeValue();
+                                            }
+                                        }
+                                        @Override
+                                        public void onCancelled(DatabaseError databaseError) {
+
+                                        }
+                                    };
+                                    CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener2);
+                                }
+                            })
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                }
+                            });
+                    builder.show();
+                }else{
+
                 qty.setText(String.valueOf(Integer.parseInt(qty.getText().toString()) - 1));
                 DecimalFormat df = new DecimalFormat("#.00");
                 Float price_val = (Float.parseFloat(price.getText().toString())/(Integer.parseInt(qty.getText().toString())+1)) * Integer.parseInt(qty.getText().toString());
                 price.setText(df.format(price_val));
-
-                final DatabaseReference CART_REF = FirebaseDatabase.getInstance().getReference("/CurrentCart");
-                final DatabaseReference CHECK_REF =
-                        FirebaseDatabase.getInstance().getReference("/CurrentCart"+"/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
                 ValueEventListener eventListener = new ValueEventListener() {
                     @Override
@@ -124,28 +161,8 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     public void onCancelled(DatabaseError databaseError) { }
                 };
                 CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener);
-
-                if(Integer.parseInt(qty.getText().toString()) == 0) {
-                    int pos = getAdapterPosition();
-                    removeAt(pos);
-
-                    ValueEventListener eventListener2 = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            if(dataSnapshot.exists()) {
-                                CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(name.getText().toString()).removeValue();
-                            }
-                        }
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) { }
-                    };
-                    CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener2);
-
-
-                }
+            }
             });
-
-
         }
 
         private void removeAt(int position) {
