@@ -7,14 +7,16 @@ public class MealModel {
     String price;
     String description;
     int qty;
+    String restaurant_name;
 
 
-    public MealModel(String name, String img, String price, String description, int qty) {
+    public MealModel(String name, String img, String price, String description, int qty,String restaurant_name) {
         this.name = name;
         this.img = img;
         this.price = price;
         this.description = description;
         this.qty = qty;
+        this.restaurant_name = restaurant_name;
     }
 
     public MealModel() {
@@ -40,6 +42,10 @@ public class MealModel {
         return qty;
     }
 
+    public String getRestaurant_name() {
+        return restaurant_name;
+    }
+
     @Override
     public String toString() {
         return "MealModel{" +
@@ -48,6 +54,7 @@ public class MealModel {
                 ", price='" + price + '\'' +
                 ", description='" + description + '\'' +
                 ", qty=" + qty +
+                ", restaurant_name='" + restaurant_name + '\'' +
                 '}';
     }
 }

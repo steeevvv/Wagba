@@ -11,13 +11,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.stivoo.wagba.R;
+import com.stivoo.wagba.pojo.CartItem;
 import com.stivoo.wagba.pojo.MealModel;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
 
-    private ArrayList<MealModel> cartMealsList = new ArrayList<>();
+    private ArrayList<CartItem> cartMealsList = new ArrayList<>();
 
     @NonNull
     @Override
@@ -27,12 +29,12 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull CartViewHolder holder, int position) {
-
         Glide.with(holder.getImg()).load(cartMealsList.get(position).getImg()).into(holder.img);
-//        holder.img.setImageResource(cartMealsList.get(position).getImg());
-        holder.price.setText(cartMealsList.get(position).getPrice().substring(4));
-        holder.name.setText(cartMealsList.get(position).getName());
-
+        DecimalFormat df = new DecimalFormat("#.00");
+        Float price = Float.parseFloat(cartMealsList.get(position).getPrice().substring(4)) * cartMealsList.get(position).getQty();
+        holder.price.setText(String.valueOf(df.format(price)));
+        holder.name.setText(cartMealsList.get(position).getMeal_name());
+        holder.qty.setText(String.valueOf(cartMealsList.get(position).getQty()));
     }
 
     @Override
@@ -40,7 +42,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         return cartMealsList.size();
     }
 
-    public void setList(ArrayList<MealModel> cartMealsList) {
+    public void setList(ArrayList<CartItem> cartMealsList) {
         this.cartMealsList = cartMealsList;
         notifyDataSetChanged();
     }
@@ -50,6 +52,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         ImageView img;
         TextView price;
         TextView name;
+        TextView qty;
 
         public ImageView getImg() {
             return img;
@@ -61,7 +64,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             img = itemView.findViewById(R.id.cimg_meal);
             price = itemView.findViewById(R.id.ctv_meal_price_val);
             name = itemView.findViewById(R.id.ctv_meal_name);
-
+            qty = itemView.findViewById(R.id.ctv_quantity);
 
         }
     }

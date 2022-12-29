@@ -29,6 +29,7 @@ import com.stivoo.wagba.pojo.RestaurantModel;
 import com.stivoo.wagba.ui.home.search.SearchViewModel;
 import com.stivoo.wagba.ui.restaurants.RestaurantMealsAdapter;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -118,6 +119,9 @@ public class MealFragment extends Fragment {
         inc.setOnClickListener(v -> {
             if(Integer.parseInt(amt.getText().toString())+1 <= meal.getQty()){
                 amt.setText(String.valueOf(Integer.parseInt(amt.getText().toString()) + 1));
+                DecimalFormat df = new DecimalFormat("#.00");
+                Float price_val = Float.parseFloat(meal.getPrice().substring(4)) * Integer.parseInt(amt.getText().toString());
+                price.setText("EGP "+df.format(price_val));
             }else{
                 Toast.makeText(getContext(), "Can't Increment than maximum quantity!", Toast.LENGTH_SHORT).show();
             }
@@ -126,6 +130,13 @@ public class MealFragment extends Fragment {
         dec.setOnClickListener(v -> {
             if(Integer.parseInt(amt.getText().toString()) > 0) {
                 amt.setText(String.valueOf(Integer.parseInt(amt.getText().toString()) - 1));
+                if(Integer.parseInt(amt.getText().toString()) == 0){
+                    price.setText(meal.getPrice());
+                } else {
+                    DecimalFormat df = new DecimalFormat("#.00");
+                    Float price_val = Float.parseFloat(meal.getPrice().substring(4)) * Integer.parseInt(amt.getText().toString());
+                    price.setText("EGP " + df.format(price_val));
+                }
             }else{
                 Toast.makeText(getContext(), "Can't Decrement than 0!", Toast.LENGTH_SHORT).show();
             }

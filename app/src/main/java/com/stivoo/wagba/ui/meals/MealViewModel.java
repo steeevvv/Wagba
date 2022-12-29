@@ -17,6 +17,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.stivoo.wagba.FirebaseQueryLiveData;
+import com.stivoo.wagba.pojo.CartItem;
 import com.stivoo.wagba.pojo.MealModel;
 
 import java.util.HashMap;
@@ -26,27 +27,16 @@ public class MealViewModel extends ViewModel {
     private static final DatabaseReference CHECK_REF =
             FirebaseDatabase.getInstance().getReference("/CurrentCart"+"/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
-    private final FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(CHECK_REF);
-
     private static final DatabaseReference CART_REF =
             FirebaseDatabase.getInstance().getReference("/CurrentCart");
-
-    @NonNull
-    public LiveData<DataSnapshot> checkMeal() {
-        return liveData;
-    }
-
 
     public void writeNewCart(MealModel meal, int qty, String info) {
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()) {
-                    Map<String, Object> values = new HashMap<>();
-                    values.put("meal", meal);
-                    values.put("qty", qty);
-                    values.put("inf", info);
-                    CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(meal.getName()).setValue(values);
+                    CartItem item = new CartItem(meal.getName(),meal.getRestaurant_name(),meal.getPrice(),info,qty,meal.getImg());
+                    CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(meal.getName()).setValue(item);
                 } else{
                     CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(meal.getName()).child("qty").setValue(qty);
                     CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(meal.getName()).child("inf").setValue(info);
