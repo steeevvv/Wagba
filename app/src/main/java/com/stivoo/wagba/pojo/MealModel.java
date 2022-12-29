@@ -6,12 +6,15 @@ public class MealModel {
     String img;
     String price;
     String description;
+    int qty;
 
-    public MealModel(String name, String img, String price, String description) {
+
+    public MealModel(String name, String img, String price, String description, int qty) {
         this.name = name;
         this.img = img;
         this.price = price;
         this.description = description;
+        this.qty = qty;
     }
 
     public MealModel() {
@@ -33,6 +36,10 @@ public class MealModel {
         return description;
     }
 
+    public int getQty() {
+        return qty;
+    }
+
     @Override
     public String toString() {
         return "MealModel{" +
@@ -40,6 +47,7 @@ public class MealModel {
                 ", img='" + img + '\'' +
                 ", price='" + price + '\'' +
                 ", description='" + description + '\'' +
+                ", qty=" + qty +
                 '}';
     }
 }
