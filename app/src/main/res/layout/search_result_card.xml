@@ -28,8 +28,7 @@
             android:scaleY="1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/meal_monster" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sr_name"
@@ -42,7 +41,6 @@
             android:elevation="3dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="Mighty Zinger"
             android:textColor="@color/ChineseBlack"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"

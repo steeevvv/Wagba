@@ -28,11 +28,10 @@
                 android:id="@+id/restaurant_logo"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:elevation="20dp"
                 android:contentDescription="@string/category_icon_desc"
+                android:elevation="20dp"
                 android:scaleType="centerCrop"
-                tools:ignore="ImageContrastCheck"
-                tools:srcCompat="@tools:sample/avatars" />
+                tools:ignore="ImageContrastCheck" />
         </androidx.cardview.widget.CardView>
 
 
@@ -42,7 +41,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_semibold"
             android:paddingTop="6dp"
-            android:text="@string/category_template"
             android:textColor="@color/ChineseBlack"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"

@@ -59,10 +59,8 @@ public class PreviousOrdersFragment extends Fragment implements OrderTrackingRec
                     }
                     adapter.setList(ordersList);
                 }
-
             }
         });
-
     }
 
     @Override

@@ -47,7 +47,7 @@
                 android:layout_weight="0."
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/meal_bigtasty" />
+                 />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_semibold"
                         android:gravity="center"
-                        android:text="0"
+                        android:text="-"
                         android:textColor="@color/ChineseBlack" />
 
                     <Button
@@ -147,7 +147,6 @@
                     android:elevation="3dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
-                    android:text="Big Tasty"
                     android:textColor="@color/ChineseBlack"
                     android:textSize="18sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -199,7 +198,7 @@
                     android:elevation="3dp"
                     android:fontFamily="@font/poppins_semibold"
                     android:gravity="center"
-                    android:text="EGP 114.99"
+                    android:text="EGP --.--"
                     android:textColor="@color/wagba_main"
                     android:textSize="18sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -215,7 +214,6 @@
                     android:fontFamily="@font/poppins"
 
                     android:gravity="center"
-                    android:text="Beef • Burger • Sandwich"
                     android:textColor="@color/ChineseBlack_500"
                     android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="@+id/m_name"
@@ -233,7 +231,6 @@
                     android:elevation="3dp"
                     android:fontFamily="@font/poppins"
                     android:gravity="start"
-                    android:text="Tender beef pieces deep tried with fresh chickpea flour and spices. Marinated chicken pieces, dipped in a spicy batter and deep fried to an appealing gold perfection."
                     android:textColor="@color/ChineseBlack_500"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="parent"

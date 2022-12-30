@@ -27,8 +27,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:scaleType="centerCrop" />
         </androidx.cardview.widget.CardView>
 
         <TextView
@@ -37,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="Chicken Ranch Pizza"
             android:textColor="@color/ChineseBlack"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/linearLayout2"
@@ -51,7 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:fontFamily="@font/poppins_semibold"
-            android:text="70.00"
+            android:text="--.--"
             android:textColor="@color/ChineseBlack"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/ctv_EGP"
@@ -103,7 +101,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/poppins_semibold"
                 android:gravity="center"
-                android:text="1"
+                android:text="-"
                 android:textColor="@color/ChineseBlack" />
 
             <Button

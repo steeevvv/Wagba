@@ -91,7 +91,6 @@
                 android:contentDescription="@string/category_icon_desc"
                 android:elevation="20dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/stivo_jpg"
                 tools:ignore="ImageContrastCheck" />
         </androidx.cardview.widget.CardView>
 

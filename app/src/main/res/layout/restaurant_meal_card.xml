@@ -27,8 +27,7 @@
             android:scaleY="1.2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/meal_chickenranch" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/rd_categories4"
@@ -40,7 +39,6 @@
             android:elevation="3dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="Mighty Zinger"
             android:textColor="@color/ChineseBlack"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -57,7 +55,7 @@
             android:elevation="3dp"
             android:fontFamily="@font/poppins_semibold"
             android:gravity="center"
-            android:text="EGP 114.99"
+            android:text="EGP --.--"
             android:textColor="@color/wagba_main"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
