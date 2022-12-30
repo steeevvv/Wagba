@@ -33,6 +33,10 @@ public class OrderConfirmationAdapter extends RecyclerView.Adapter<OrderConfirma
         holder.tv_meal_quantity.setText("X"+String.valueOf(orderList.get(position).getQty()));
     }
 
+    public ArrayList<CartItem> getOrderList() {
+        return orderList;
+    }
+
     @Override
     public int getItemCount() {
         return orderList.size();

@@ -107,6 +107,7 @@ public class MealFragment extends Fragment {
         additional_info = view.findViewById(R.id.oet_additional_info3);
 
 
+
         if (meal.getQty() == 0){
             add_to_cart.setEnabled(false);
         }

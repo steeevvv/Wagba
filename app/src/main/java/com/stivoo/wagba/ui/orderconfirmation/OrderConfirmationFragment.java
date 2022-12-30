@@ -18,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ import com.stivoo.wagba.pojo.CartItem;
 import com.stivoo.wagba.pojo.MealModel;
 import com.stivoo.wagba.ui.home.cart.CartViewModel;
 import com.stivoo.wagba.ui.home.cart.EmptyCartFragment;
+import com.stivoo.wagba.ui.home.home.HomeFragment;
 import com.stivoo.wagba.ui.orderconfirmation.OrderConfirmationAdapter;
 
 import java.text.DecimalFormat;
@@ -50,7 +52,7 @@ public class OrderConfirmationFragment extends Fragment {
     Button confirm;
     RadioButton gate3, gate4;
     RadioButton am, pm;
-
+    EditText info;
 
     public OrderConfirmationFragment() {
     }
@@ -105,6 +107,7 @@ public class OrderConfirmationFragment extends Fragment {
         gate4 = view.findViewById(R.id.radio_gate4);
         am = view.findViewById(R.id.radio_time_am);
         pm = view.findViewById(R.id.radio_time_pm);
+        info = view.findViewById(R.id.oet_additional_info);
 
         RecyclerView recycler5 = view.findViewById(R.id.o_summary_recyclerView);
         recycler5.setNestedScrollingEnabled(false);
@@ -123,26 +126,43 @@ public class OrderConfirmationFragment extends Fragment {
             }
 
             long currentTime = Calendar.getInstance().getTime().getHours();
-            Log.d("TTAAGG",String.valueOf(currentTime));
-
             if (am.isChecked()) {
-                if (12 - currentTime >= 2) {
-                    if (Calendar.getInstance().getTime().getMinutes() > 0) {
-                        time = "am";
-                    } else {
+                if (12 - currentTime > 2) {
+                    orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "am", gate);
+                    Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
+                    FragmentManager fragm = getParentFragmentManager();
+                    fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                } else if (12 - currentTime == 2){
+                    if(Calendar.getInstance().getTime().getMinutes() >0){
                         Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "am", gate);
+                        Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
+                        FragmentManager fragm = getParentFragmentManager();
+                        fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
                     }
-                } else {
+                }
+                else {
                     Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
                 }
             } else if (pm.isChecked()) {
-                if (15 - currentTime >= 2) {
-                    if (Calendar.getInstance().getTime().getMinutes() > 0) {
-                        time = "pm";
-                    } else {
+                if (15 - currentTime > 2) {
+                    Log.d("TIME", "PMMMM");
+                    orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "pm", gate);
+                    Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
+                    FragmentManager fragm = getParentFragmentManager();
+                    fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                } else if (15 - currentTime == 2){
+                    if(Calendar.getInstance().getTime().getMinutes() >0){
                         Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
+                    }else{
+                        orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "pm", gate);
+                        Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
+                        FragmentManager fragm = getParentFragmentManager();
+                        fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
                     }
-                } else {
+                }
+                else {
                     Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
                 }
             }
