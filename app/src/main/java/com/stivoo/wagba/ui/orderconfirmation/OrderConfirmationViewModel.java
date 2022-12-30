@@ -1,5 +1,7 @@
 package com.stivoo.wagba.ui.orderconfirmation;
 
+import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,8 +17,11 @@ import com.stivoo.wagba.pojo.CartItem;
 import com.stivoo.wagba.pojo.MealModel;
 
 import java.text.SimpleDateFormat;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 public class OrderConfirmationViewModel extends ViewModel {
     private static final DatabaseReference CURRENT_CART =
@@ -36,7 +41,8 @@ public class OrderConfirmationViewModel extends ViewModel {
             FirebaseDatabase.getInstance().getReference("/ConfirmedOrders");
 
     public void writeNewOrder(ArrayList<CartItem> items, String info, String period, String gate) {
-        DatabaseReference ref = CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(Calendar.getInstance().getTime().toString());
+        String idd = Calendar.getInstance().getTime().toString();
+        DatabaseReference ref = CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(idd);
         DatabaseReference meals = ref.child("meals");
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
@@ -45,15 +51,17 @@ public class OrderConfirmationViewModel extends ViewModel {
                     for(CartItem item:items) {
                         meals.child(item.getMeal_name()).setValue(item);
                     }
-                    ref.child("OrderInfo").setValue(info);
+                    ref.child("orderInfo").setValue(info);
                     Calendar cal = Calendar.getInstance();
-                    SimpleDateFormat dateOnly = new SimpleDateFormat("dd/MM/yyyy");
-                    ref.child("OrderDate").setValue(dateOnly.format(cal.getTime()));
-                    java.util.Date date = new java.util.Date();
+                    SimpleDateFormat dateOnly = new SimpleDateFormat("MMM dd, yyyy");
+                    ref.child("orderDate").setValue(dateOnly.format(cal.getTime()));
+                    Date date = new Date();
                     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-                    ref.child("OrderTime").setValue(sdf.format(date));
-                    ref.child("Period").setValue(period);
-                    ref.child("Gate").setValue(gate);
+                    ref.child("orderTime").setValue(sdf.format(date));
+                    ref.child("period").setValue(period);
+                    ref.child("gate").setValue(gate);
+                    ref.child("status").setValue("placed");
+                    ref.child("id").setValue("#"+new Date().getTime()/1000);
                 }
             }
             @Override

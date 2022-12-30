@@ -18,7 +18,7 @@ import java.util.ArrayList;
 public class PreviousOrdersAdapter extends RecyclerView.Adapter<PreviousOrdersAdapter.PreviousOrdersViewHolder> {
 
     private final OrderTrackingRecyclerViewInterface recyclerViewInterface;
-    private ArrayList<OrderModel> ordersList = new ArrayList<>();
+    private static ArrayList<OrderModel> ordersList = new ArrayList<>();
 
     public PreviousOrdersAdapter(OrderTrackingRecyclerViewInterface recyclerViewInterface) {
         this.recyclerViewInterface = recyclerViewInterface;
@@ -32,9 +32,8 @@ public class PreviousOrdersAdapter extends RecyclerView.Adapter<PreviousOrdersAd
 
     @Override
     public void onBindViewHolder(@NonNull PreviousOrdersViewHolder holder, int position) {
-        holder.order_id.setText(ordersList.get(position).getOrder_id());
-        holder.order_date.setText(ordersList.get(position).getOrder_date());
-
+        holder.order_id.setText(ordersList.get(position).getId());
+        holder.order_date.setText(ordersList.get(position).getOrderDate());
     }
 
     @Override
@@ -66,7 +65,7 @@ public class PreviousOrdersAdapter extends RecyclerView.Adapter<PreviousOrdersAd
                         int pos = getAdapterPosition();
 
                         if (pos != RecyclerView.NO_POSITION){
-                            recyclerViewInterface.onViewBtnClick(pos);
+                            recyclerViewInterface.onViewBtnClick(ordersList.get(pos));
                         }
                     }
                 }

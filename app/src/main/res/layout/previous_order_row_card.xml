@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/po_date_txt"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:fontFamily="@font/poppins_semibold"
@@ -44,6 +44,7 @@
             android:textColor="@color/ChineseBlack"
             android:textSize="16sp"
             app:layout_constraintBottom_toTopOf="@+id/po_id_txt"
+            app:layout_constraintEnd_toStartOf="@+id/po_show_btn"
             app:layout_constraintStart_toEndOf="@+id/cardView2"
             app:layout_constraintTop_toTopOf="@+id/cardView2"
             app:layout_constraintVertical_chainStyle="packed" />
