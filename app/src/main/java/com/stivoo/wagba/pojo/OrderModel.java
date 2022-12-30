@@ -10,7 +10,43 @@ public class OrderModel {
     String period;
     ArrayList<CartItem> meals;
     String id;
-    String status;
+    String statusConfirm;
+    String statusCooking;
+
+    public void setStatusConfirm(String statusConfirm) {
+        this.statusConfirm = statusConfirm;
+    }
+
+    public void setStatusCooking(String statusCooking) {
+        this.statusCooking = statusCooking;
+    }
+
+    public void setStatusDelivery(String statusDelivery) {
+        this.statusDelivery = statusDelivery;
+    }
+
+    public void setStatusProcess(String statusProcess) {
+        this.statusProcess = statusProcess;
+    }
+
+    public String getStatusConfirm() {
+        return statusConfirm;
+    }
+
+    public String getStatusCooking() {
+        return statusCooking;
+    }
+
+    public String getStatusDelivery() {
+        return statusDelivery;
+    }
+
+    public String getStatusProcess() {
+        return statusProcess;
+    }
+
+    String statusDelivery;
+    String statusProcess;
 
     public String getGate() {
         return gate;
@@ -71,11 +107,7 @@ public class OrderModel {
         return id;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public OrderModel(String gate, String orderDate, String orderInfo, String orderTime, String period, ArrayList<CartItem> meals, String id, String status) {
+    public OrderModel(String gate, String orderDate, String orderInfo, String orderTime, String period, ArrayList<CartItem> meals, String id, String statusConfirm, String statusCooking, String statusDelivery, String statusProcess) {
         this.gate = gate;
         this.orderDate = orderDate;
         this.orderInfo = orderInfo;
@@ -83,6 +115,9 @@ public class OrderModel {
         this.period = period;
         this.meals = meals;
         this.id = id;
-        this.status = status;
+        this.statusConfirm = statusConfirm;
+        this.statusCooking = statusCooking;
+        this.statusDelivery = statusDelivery;
+        this.statusProcess = statusProcess;
     }
 }

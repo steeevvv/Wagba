@@ -37,7 +37,13 @@ public class RecommendedMealsAdapter extends RecyclerView.Adapter<RecommendedMea
 //        holder.img.setImageResource();
         holder.price.setText(mealsList.get(position).getPrice());
         holder.name.setText(mealsList.get(position).getName());
-        holder.desc.setText(mealsList.get(position).getDescription());
+        String description = mealsList.get(position).getDescription();
+        if(description.length() < 70){
+            holder.desc.setText(description);
+        }else{
+            holder.desc.setText(description.substring(0, 70)+"...");
+        }
+        holder.rest.setText(mealsList.get(position).getRestaurant_name());
     }
 
     @Override
@@ -56,6 +62,7 @@ public class RecommendedMealsAdapter extends RecyclerView.Adapter<RecommendedMea
         TextView price;
         TextView name;
         TextView desc;
+        TextView rest;
 
         public ImageView getImg() {
             return img;
@@ -68,7 +75,7 @@ public class RecommendedMealsAdapter extends RecyclerView.Adapter<RecommendedMea
             price = itemView.findViewById(R.id.rtv_meal_price_val);
             name = itemView.findViewById(R.id.rtv_meal_name);
             desc = itemView.findViewById(R.id.meal_desc);
-
+            rest = itemView.findViewById(R.id.rtv_meal_rest);
             itemView.findViewById(R.id.button2).setOnClickListener(v -> {
                 if (recyclerViewInterface != null){
                     int pos = getAdapterPosition();

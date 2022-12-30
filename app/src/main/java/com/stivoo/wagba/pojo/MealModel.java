@@ -8,15 +8,20 @@ public class MealModel {
     String description;
     int qty;
     String restaurant_name;
+    String delivery_fees;
 
+    public String getDelivery_fees() {
+        return delivery_fees;
+    }
 
-    public MealModel(String name, String img, String price, String description, int qty,String restaurant_name) {
+    public MealModel(String name, String img, String price, String description, int qty, String restaurant_name, String delivery_fees) {
         this.name = name;
         this.img = img;
         this.price = price;
         this.description = description;
         this.qty = qty;
         this.restaurant_name = restaurant_name;
+        this.delivery_fees = delivery_fees;
     }
 
     public MealModel() {

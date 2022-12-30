@@ -22,7 +22,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.CartItem;
-import com.stivoo.wagba.pojo.MealModel;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

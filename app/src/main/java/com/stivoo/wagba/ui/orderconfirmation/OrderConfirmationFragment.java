@@ -128,7 +128,7 @@ public class OrderConfirmationFragment extends Fragment {
             long currentTime = Calendar.getInstance().getTime().getHours();
             if (am.isChecked()) {
                 if (12 - currentTime > 2) {
-                    orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "am", gate);
+                    orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "12:00 (Noon Period)", gate);
                     Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                     FragmentManager fragm = getParentFragmentManager();
                     fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
@@ -136,7 +136,7 @@ public class OrderConfirmationFragment extends Fragment {
                     if(Calendar.getInstance().getTime().getMinutes() >0){
                         Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
                     }else{
-                        orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "am", gate);
+                        orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "12:00 (Noon Period)", gate);
                         Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                         FragmentManager fragm = getParentFragmentManager();
                         fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
@@ -148,7 +148,7 @@ public class OrderConfirmationFragment extends Fragment {
             } else if (pm.isChecked()) {
                 if (15 - currentTime > 2) {
                     Log.d("TIME", "PMMMM");
-                    orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "pm", gate);
+                    orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "15:00 (PM Period)", gate);
                     Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                     FragmentManager fragm = getParentFragmentManager();
                     fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
@@ -156,7 +156,7 @@ public class OrderConfirmationFragment extends Fragment {
                     if(Calendar.getInstance().getTime().getMinutes() >0){
                         Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
                     }else{
-                        orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "pm", gate);
+                        orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "15:00 (PM Period)", gate);
                         Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                         FragmentManager fragm = getParentFragmentManager();
                         fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();

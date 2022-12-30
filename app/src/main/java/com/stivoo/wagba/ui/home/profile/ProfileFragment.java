@@ -117,6 +117,7 @@ public class ProfileFragment extends Fragment {
             FragmentManager fragm = getParentFragmentManager();
             FragmentTransaction fragmentTransaction = fragm.beginTransaction();
             fragmentTransaction.replace(R.id.frameLayout, new PreviousOrdersFragment());
+            fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
         });
 

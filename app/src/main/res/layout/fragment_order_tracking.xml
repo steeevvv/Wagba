@@ -32,31 +32,138 @@
             android:layout_height="1dp"
             android:background="#DBDBDB" />
 
-        <TextView
-            android:id="@+id/ot_id"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="12dp"
-            android:fontFamily="@font/poppins_semibold"
+            android:orientation="horizontal">
 
-            android:text="Order ID"
-            android:textColor="@color/ChineseBlack"
-            android:textSize="18sp"
-            tools:ignore="TextContrastCheck" />
+            <TextView
+                android:id="@+id/ot_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
 
-        <TextView
-            android:id="@+id/ot_id_val"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Order Date"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_gate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Order Gate"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="12dp"
-            android:layout_marginBottom="6dp"
-            android:fontFamily="@font/poppins"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
 
-            android:text="#1122335"
-            android:textColor="@color/ChineseBlack_500"
-            android:textSize="16sp"
-            tools:ignore="TextContrastCheck" />
+            <TextView
+                android:id="@+id/ot_date_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_gate_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ot_id"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Order ID"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_period"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Order Period"
+                android:textColor="@color/ChineseBlack"
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ot_id_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/ot_period_val"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:layout_marginBottom="6dp"
+                android:layout_weight="1"
+
+                android:fontFamily="@font/poppins"
+                android:textColor="@color/ChineseBlack_500"
+                android:textSize="16sp"
+                tools:ignore="TextContrastCheck" />
+        </LinearLayout>
 
         <View
             android:id="@+id/horizontal_separator14"
@@ -124,7 +231,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Delivery"
                 android:textColor="@color/ChineseBlack"
@@ -138,7 +245,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/background_round_main"
+                android:background="@drawable/search_bar_bg"
                 android:padding="8dp"
                 android:src="@drawable/ic_track_cooking"
                 app:layout_constraintBottom_toBottomOf="@+id/ot_inprocess24"
@@ -165,7 +272,7 @@
 
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="11:03"
+                android:text="--:--"
                 android:textColor="@color/ChineseBlack"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -177,7 +284,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Cooking"
                 android:textColor="@color/ChineseBlack"
@@ -192,7 +299,7 @@
                 android:layout_height="50dp"
                 android:layout_marginStart="12dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/background_round_main"
+                android:background="@drawable/search_bar_bg"
                 android:padding="8dp"
                 android:src="@drawable/ic_track_restaccept"
                 app:layout_constraintBottom_toBottomOf="@+id/ot_inprocess23"
@@ -206,7 +313,7 @@
 
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="10:38"
+                android:text="--:--"
                 android:textColor="@color/ChineseBlack"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -231,7 +338,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginTop="48dp"
+                android:layout_marginTop="30dp"
                 android:fontFamily="@font/poppins_semibold"
                 android:text="Confirmed"
                 android:textColor="@color/ChineseBlack"
@@ -292,7 +399,7 @@
 
                 android:layout_marginEnd="12dp"
                 android:fontFamily="@font/poppins_semibold"
-                android:text="09:34"
+                android:text="--:--"
                 android:textColor="@color/ChineseBlack"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

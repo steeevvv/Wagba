@@ -48,6 +48,17 @@
             android:textColor="@color/ChineseBlack"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/rtv_meal_name" />
+
+        <TextView
+            android:id="@+id/rtv_meal_rest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/poppins"
+            android:textColor="@color/wagba_main"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/rtv_meal_price_val"
             app:layout_constraintStart_toStartOf="@+id/rtv_meal_name"
             app:layout_constraintTop_toTopOf="@+id/button2" />
 

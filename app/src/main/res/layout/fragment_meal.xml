@@ -89,7 +89,7 @@
                         android:layout_weight="1"
                         android:fontFamily="@font/poppins_semibold"
                         android:gravity="center"
-                        android:text="-"
+                        android:text="0"
                         android:textColor="@color/ChineseBlack" />
 
                     <Button
@@ -138,17 +138,19 @@
 
                 <TextView
                     android:id="@+id/m_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
-                    android:layout_weight="0."
+                    android:layout_marginEnd="6dp"
 
+                    android:layout_weight="0."
                     android:elevation="3dp"
                     android:fontFamily="@font/poppins_semibold"
-                    android:gravity="center"
+                    android:gravity="start"
                     android:textColor="@color/ChineseBlack"
                     android:textSize="18sp"
+                    app:layout_constraintEnd_toStartOf="@+id/m_price"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="TextContrastCheck" />
