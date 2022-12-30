@@ -77,7 +77,7 @@ public class AuthRepository {
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("pw").setValue(password);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("name").setValue(name);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("phone").setValue(phone);
-                                myRef.child("Users").child(task.getResult().getUser().getUid()).child("profile_img").setValue("");
+                                myRef.child("Users").child(task.getResult().getUser().getUid()).child("profile_img").setValue("https://firebasestorage.googleapis.com/v0/b/wagba-c9f53.appspot.com/o/default-user.png?alt=media&token=2d7b3cae-2ddd-4f95-a759-cbf28266309d");
                                 UserModel x = new UserModel(task.getResult().getUser().getUid(), name, mail,phone,"");
                                 insert(x);
                             } else {
@@ -165,6 +165,21 @@ public class AuthRepository {
         new AuthRepository.UpdateUserAsyncTask(userDao).execute(user);
     }
 
+    public void updateName(String username, String idd){
+        new AuthRepository.UpdateUserNameAsyncTask(userDao).execute(username,idd);
+    }
+
+    public void updateEmail(String email, String idd){
+        new AuthRepository.UpdateUserEmailAsyncTask(userDao).execute(email,idd);
+    }
+
+    public void updatePhone(String phone, String idd){
+        new AuthRepository.UpdateUserPhoneAsyncTask(userDao).execute(phone,idd);
+    }
+
+
+
+
     public LiveData<UserModel> getUsers(String id) {
         return users;
     }
@@ -180,6 +195,44 @@ public class AuthRepository {
             return null;
         }
     }
+
+
+    private static class UpdateUserNameAsyncTask extends AsyncTask<String, Void, Void> {
+        private UserDao userDao;
+        private UpdateUserNameAsyncTask(UserDao userDao) { //constructor as the class is static
+            this.userDao = userDao;
+        }
+        @Override
+        protected Void doInBackground(String... strings) {
+            userDao.updateName(strings[0], strings[1]);
+            return null;
+        }
+    }
+
+    private static class UpdateUserEmailAsyncTask extends AsyncTask<String, Void, Void> {
+        private UserDao userDao;
+        private UpdateUserEmailAsyncTask(UserDao userDao) { //constructor as the class is static
+            this.userDao = userDao;
+        }
+        @Override
+        protected Void doInBackground(String... strings) {
+            userDao.updateEmail(strings[0], strings[1]);
+            return null;
+        }
+    }
+
+    private static class UpdateUserPhoneAsyncTask extends AsyncTask<String, Void, Void> {
+        private UserDao userDao;
+        private UpdateUserPhoneAsyncTask(UserDao userDao) { //constructor as the class is static
+            this.userDao = userDao;
+        }
+        @Override
+        protected Void doInBackground(String... strings) {
+            userDao.updatePhone(strings[0], strings[1]);
+            return null;
+        }
+    }
+
 
     private static class UpdateUserAsyncTask extends AsyncTask<UserModel, Void, Void> {
         private UserDao userDao;

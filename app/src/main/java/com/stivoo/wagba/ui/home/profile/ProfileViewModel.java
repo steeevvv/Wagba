@@ -70,6 +70,19 @@ public class ProfileViewModel extends AndroidViewModel {
         appRepository.update(user);
     }
 
+    public void updateName(String username, String idd){
+        appRepository.updateName(username, idd);
+    }
+
+    public void updateEmail(String email, String idd){
+        appRepository.updateEmail(email, idd);
+    }
+
+    public void updatePhone(String phone, String idd){
+        appRepository.updatePhone(phone, idd);
+    }
+
+
     public LiveData<UserModel> getUsers(String id) {
         return user_data;
     }

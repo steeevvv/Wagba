@@ -10,7 +10,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.stivoo.wagba.pojo.UserModel;
 
-@Database(entities = UserModel.class,version = 2,exportSchema = false)
+@Database(entities = UserModel.class,version = 3,exportSchema = false)
 public abstract class UserDatabase extends RoomDatabase {
     private static UserDatabase instance;
 

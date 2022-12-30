@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -139,7 +140,47 @@ public class ProfileFragment extends Fragment {
         tv_name.setOnKeyListener((v, keyCode, event) -> {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                     (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                String new_name = tv_name.getText().toString();
+                profileViewModel.updateName(new_name, FirebaseAuth.getInstance().getUid());
+                return true;
+            }
+            return false;
+        });
 
+        tv_number.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                String new_phone = tv_number.getText().toString();
+                String phone_pattern = "(010|011|012|015)[0-9]{8}$";
+
+                if(!new_phone.matches(phone_pattern)) {
+                    Toast.makeText(getContext(), "Please Set a Valid Phone Number", Toast.LENGTH_SHORT).show();
+                    tv_number.setBackgroundResource(R.drawable.custom_input_err);
+                    tv_number.setError("Please Set a Valid Phone Number");
+                }else{
+                    tv_number.setBackgroundResource(R.drawable.custom_input);
+                    profileViewModel.updatePhone(new_phone, FirebaseAuth.getInstance().getUid());
+                }
+                return true;
+            }
+            return false;
+        });
+
+
+        tv_email.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+                String new_email = tv_email.getText().toString();
+                String emailPattern = "[a-zA-Z0-9._-]+@eng.asu.edu.eg";
+
+                if(!new_email.matches(emailPattern)) {
+                    Toast.makeText(getContext(), "Please Set a new email of @eng.asu.edu.eg", Toast.LENGTH_SHORT).show();
+                    tv_email.setBackgroundResource(R.drawable.custom_input_err);
+                    tv_email.setError("Please Set a new email of @eng.asu.edu.eg");
+                }else{
+                    tv_email.setBackgroundResource(R.drawable.custom_input);
+                    profileViewModel.updateEmail(new_email, FirebaseAuth.getInstance().getUid());
+                }
                 return true;
             }
             return false;
