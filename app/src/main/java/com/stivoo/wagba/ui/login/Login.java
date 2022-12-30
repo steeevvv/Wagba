@@ -1,22 +1,35 @@
 package com.stivoo.wagba.ui.login;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.LinkProperties;
+import android.net.Network;
+import android.net.NetworkCapabilities;
+import android.net.NetworkInfo;
+import android.net.NetworkRequest;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.stivoo.wagba.R;
+import com.stivoo.wagba.no_internet;
 import com.stivoo.wagba.ui.home.HomeActivity;
+import com.stivoo.wagba.ui.home.cart.EmptyCartFragment;
 import com.stivoo.wagba.ui.passwordReset.ForgotPassword;
 import com.stivoo.wagba.ui.signup.Signup;
 import com.stivoo.wagba.databinding.ActivityLoginBinding;
 
+import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Login extends AppCompatActivity {
@@ -89,4 +102,21 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+    private boolean isNetworkAvailable() {
+        boolean haveConnectedWifi = false;
+        boolean haveConnectedMobile = false;
+
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] netInfo = cm.getAllNetworkInfo();
+        for (NetworkInfo ni : netInfo) {
+            if (ni.getTypeName().equalsIgnoreCase("WIFI"))
+                if (ni.isConnected())
+                    haveConnectedWifi = true;
+            if (ni.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (ni.isConnected())
+                    haveConnectedMobile = true;
+        }
+        return haveConnectedWifi || haveConnectedMobile;
+    }
+
 }

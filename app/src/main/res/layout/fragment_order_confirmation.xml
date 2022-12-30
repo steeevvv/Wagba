@@ -472,7 +472,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/o_payment_method" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/o_confirm_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"

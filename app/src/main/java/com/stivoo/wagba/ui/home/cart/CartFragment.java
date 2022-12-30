@@ -12,36 +12,35 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.pojo.CartItem;
-import com.stivoo.wagba.pojo.RestaurantModel;
-import com.stivoo.wagba.ui.home.search.SearchSimulationAdapter;
-import com.stivoo.wagba.ui.home.search.SearchViewModel;
 import com.stivoo.wagba.ui.orderconfirmation.OrderConfirmationFragment;
 import com.stivoo.wagba.R;
-import com.stivoo.wagba.pojo.MealModel;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-
 
 public class CartFragment extends Fragment {
 
-    ArrayList<MealModel> cartMeals;
     CartAdapter adapter = new CartAdapter();
 
+    TextView subtotal;
+    TextView delivery;
+    TextView total;
     Button btn;
     CartViewModel cartViewModel;
     ArrayList<CartItem> cartItems;
+    Float subtotal_value =0.00f;
+    Float delivery_value =0.00f;
+    DecimalFormat df = new DecimalFormat("#.00");
 
     public CartFragment() {
-
     }
 
 
@@ -52,15 +51,27 @@ public class CartFragment extends Fragment {
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
         LiveData<DataSnapshot> liveData = cartViewModel.getCart();
         liveData.observe(this, new Observer<DataSnapshot>() {
+
             @Override
             public void onChanged(@Nullable DataSnapshot dataSnapshot) {
                 if (dataSnapshot != null) {
                     cartItems = new ArrayList<>();
+                    subtotal_value = 0.00f;
+                    delivery_value = 0.00f;
                     for (DataSnapshot dataSnapshott : dataSnapshot.getChildren()) {
                         CartItem item = dataSnapshott.getValue(CartItem.class);
                         cartItems.add(item);
+                        subtotal_value+=item.getQty()*Float.parseFloat(item.getPrice().substring(4));
+                        if (item.getDelivery_fee() > delivery_value){
+                            delivery_value = item.getDelivery_fee();
+                        }
                     }
                     adapter.setList(cartItems);
+                    subtotal.setText("EGP "+ df.format(subtotal_value));
+                    delivery.setText("EGP "+ df.format(delivery_value));
+                    total.setText("EGP "+ df.format(delivery_value+subtotal_value));
+
+
                     if (cartItems.size() == 0){
                         FragmentManager fragm = getParentFragmentManager();
                         FragmentTransaction fragmentTransaction = fragm.beginTransaction();
@@ -89,12 +100,16 @@ public class CartFragment extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FragmentManager fragm = getParentFragmentManager();
-//                FragmentTransaction fragmentTransaction = fragm.beginTransaction();
-//                fragmentTransaction.replace(R.id.frameLayout, new OrderConfirmationFragment());
-//                fragmentTransaction.commit();
+                FragmentManager fragm = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragm.beginTransaction();
+                fragmentTransaction.replace(R.id.frameLayout, new OrderConfirmationFragment());
+                fragmentTransaction.commit();
             }
         });
+
+        subtotal = view.findViewById(R.id.ctv_subtotal_val);
+        total = view.findViewById(R.id.ctv_total_val);
+        delivery = view.findViewById(R.id.ctv_deliveryfee_val);
 
         RecyclerView recycler = view.findViewById(R.id.cRecyclerView);
         recycler.setNestedScrollingEnabled(false);

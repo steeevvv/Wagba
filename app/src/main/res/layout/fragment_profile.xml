@@ -139,6 +139,15 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.38" />
+
+        <ImageButton
+            android:id="@+id/changepic_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="20dp"
+            android:src="@drawable/ic_baseline_camera_alt_24"
+            app:layout_constraintBottom_toBottomOf="@+id/profile_img_card"
+            app:layout_constraintEnd_toEndOf="@+id/profile_img_card" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

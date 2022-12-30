@@ -35,7 +35,7 @@ public class MealViewModel extends ViewModel {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if(!dataSnapshot.exists()) {
-                    CartItem item = new CartItem(meal.getName(),meal.getRestaurant_name(),meal.getPrice(),info,qty,meal.getImg());
+                    CartItem item = new CartItem(meal.getName(),meal.getRestaurant_name(),meal.getPrice(),info,qty,meal.getImg(),20.0f);
                     CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(meal.getName()).setValue(item);
                 } else{
                     CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(meal.getName()).child("qty").setValue(qty);

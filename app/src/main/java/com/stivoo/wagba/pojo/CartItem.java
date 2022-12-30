@@ -7,6 +7,7 @@ public class CartItem {
     String additional_info;
     int qty;
     String img;
+    float delivery_fee;
 
     public CartItem() {
     }
@@ -20,16 +21,22 @@ public class CartItem {
                 ", additional_info='" + additional_info + '\'' +
                 ", qty=" + qty +
                 ", img='" + img + '\'' +
+                ", delivery_fee=" + delivery_fee +
                 '}';
     }
 
-    public CartItem(String meal_name, String restaurant_name, String price, String additional_info, int qty, String img) {
+    public float getDelivery_fee() {
+        return delivery_fee;
+    }
+
+    public CartItem(String meal_name, String restaurant_name, String price, String additional_info, int qty, String img, float delivery_fee) {
         this.meal_name = meal_name;
         this.restaurant_name = restaurant_name;
         this.price = price;
         this.additional_info = additional_info;
         this.qty = qty;
         this.img = img;
+        this.delivery_fee = delivery_fee;
     }
 
     public String getMeal_name() {

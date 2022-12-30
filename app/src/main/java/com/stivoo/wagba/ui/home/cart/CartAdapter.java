@@ -58,28 +58,23 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public class CartViewHolder extends RecyclerView.ViewHolder {
-
         ImageView img;
         TextView price;
         TextView name;
         TextView qty;
         Button inc;
         Button dec;
-
         public ImageView getImg() {
             return img;
         }
-
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
-
             img = itemView.findViewById(R.id.cimg_meal);
             price = itemView.findViewById(R.id.ctv_meal_price_val);
             name = itemView.findViewById(R.id.ctv_meal_name);
             qty = itemView.findViewById(R.id.ctv_quantity);
             inc = itemView.findViewById(R.id.cbtn_inc);
             dec = itemView.findViewById(R.id.cbtn_dec);
-
 
             inc.setOnClickListener(v -> {
                     qty.setText(String.valueOf(Integer.parseInt(qty.getText().toString()) + 1));
@@ -102,49 +97,36 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     public void onCancelled(DatabaseError databaseError) { }
                 };
                 CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener);
-
             });
+
 
             dec.setOnClickListener(v -> {
                 final DatabaseReference CART_REF = FirebaseDatabase.getInstance().getReference("/CurrentCart");
                 final DatabaseReference CHECK_REF =
                         FirebaseDatabase.getInstance().getReference("/CurrentCart"+"/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
-
-
                 if(Integer.parseInt(qty.getText().toString()) == 1) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(dec.getContext());
-
                     builder.setTitle("ALERT!!!");
                     builder.setMessage("Are you sure you want to delete this item from the Cart?")
                             .setCancelable(false)
-                            .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    int pos = getAdapterPosition();
-                                    removeAt(pos);
-
-                                    ValueEventListener eventListener2 = new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            if(dataSnapshot.exists()) {
-                                                CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(name.getText().toString()).removeValue();
-                                            }
+                            .setPositiveButton("Confirm", (dialog, id) -> {
+                                int pos = getAdapterPosition();
+                                removeAt(pos);
+                                ValueEventListener eventListener2 = new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(DataSnapshot dataSnapshot) {
+                                        if(dataSnapshot.exists()) {
+                                            CART_REF.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(name.getText().toString()).removeValue();
                                         }
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-
-                                        }
-                                    };
-                                    CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener2);
-                                }
+                                    }
+                                    @Override
+                                    public void onCancelled(DatabaseError databaseError) {}
+                                };
+                                CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener2);
                             })
-                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-
-                                }
-                            });
+                            .setNegativeButton("Cancel", (dialog, id) -> { });
                     builder.show();
                 }else{
-
                 qty.setText(String.valueOf(Integer.parseInt(qty.getText().toString()) - 1));
                 DecimalFormat df = new DecimalFormat("#.00");
                 Float price_val = (Float.parseFloat(price.getText().toString())/(Integer.parseInt(qty.getText().toString())+1)) * Integer.parseInt(qty.getText().toString());
@@ -160,8 +142,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     @Override
                     public void onCancelled(DatabaseError databaseError) { }
                 };
-                CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener);
-            }
+                CHECK_REF.child(name.getText().toString()).addListenerForSingleValueEvent(eventListener); }
             });
         }
 
@@ -170,7 +151,5 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
             notifyItemRemoved(position);
             notifyItemRangeChanged(position, cartMealsList.size());
         }
-
-
     }
 }

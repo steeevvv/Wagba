@@ -1,5 +1,7 @@
 package com.stivoo.wagba.ui.home.profile;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -19,25 +21,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.ui.login.Login;
 import com.stivoo.wagba.ui.previousorders.PreviousOrdersFragment;
 import com.stivoo.wagba.R;
-import com.stivoo.wagba.ui.signup.Signup;
-
-import java.util.List;
-import java.util.Locale;
 
 public class ProfileFragment extends Fragment {
-
     Button viewOrdersBtn;
     Button logOutBtn;
     Intent go_to_login;
@@ -46,6 +41,7 @@ public class ProfileFragment extends Fragment {
     EditText tv_name;
     EditText tv_number;
     ImageView profile_img;
+    ImageButton change_pic;
 
     public ProfileFragment() {
 
@@ -106,7 +102,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
 
         viewOrdersBtn = view.findViewById(R.id.btn_viewOrders);
@@ -116,6 +111,7 @@ public class ProfileFragment extends Fragment {
         tv_number = view.findViewById(R.id.tv_profile_number);
         go_to_login = new Intent(getActivity(), Login.class);
         profile_img = view.findViewById(R.id.profile_img);
+        change_pic = view.findViewById(R.id.changepic_btn);
 
         viewOrdersBtn.setOnClickListener(v -> {
             FragmentManager fragm = getParentFragmentManager();
@@ -134,16 +130,28 @@ public class ProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        tv_name.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_ENTER)) {
-
-                    return true;
-                }
-                return false;
-            }
+        change_pic.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, 9999);
         });
+        tv_name.setOnKeyListener((v, keyCode, event) -> {
+            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+
+                return true;
+            }
+            return false;
+        });
+    }
+
+    @Override
+    public void onActivityResult(int reqCode, int resultCode, Intent data) {
+        super.onActivityResult(reqCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && reqCode == 9999){
+            Log.d("TTAAGG", data.getData().toString());
+            profile_img.setImageURI(data.getData());
+        }
     }
 }
