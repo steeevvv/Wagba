@@ -77,7 +77,6 @@ public class ProfileFragment extends Fragment {
 
 
     public ProfileFragment() {
-
     }
 
 

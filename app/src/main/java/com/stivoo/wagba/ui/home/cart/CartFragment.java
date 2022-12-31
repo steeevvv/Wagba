@@ -107,6 +107,7 @@ public class CartFragment extends Fragment {
                 FragmentManager fragm = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragm.beginTransaction();
                 fragmentTransaction.replace(R.id.frameLayout, new OrderConfirmationFragment());
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
