@@ -23,6 +23,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -117,6 +118,25 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
                         public void onCancelled(DatabaseError databaseError) {
                         }
                     });
+                    return true;
+                }
+                return false;
+            }
+        });
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    for(int i = 0; i < fm.getBackStackEntryCount()-1; ++i) {
+                        fm.popBackStack();
+                    }
+                    BottomNavigationView bottomNavigationView;
+                    bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                    bottomNavigationView.setSelectedItemId(R.id.Home);
                     return true;
                 }
                 return false;

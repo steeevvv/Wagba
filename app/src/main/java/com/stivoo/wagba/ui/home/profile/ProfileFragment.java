@@ -36,6 +36,7 @@ import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -48,6 +49,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.stivoo.wagba.MainActivity;
 import com.stivoo.wagba.pojo.UserModel;
+import com.stivoo.wagba.ui.home.home.HomeFragment;
 import com.stivoo.wagba.ui.login.Login;
 import com.stivoo.wagba.ui.previousorders.PreviousOrdersFragment;
 import com.stivoo.wagba.R;
@@ -133,6 +135,8 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
+
     private void uploadImage() {
         if(filePath != null)
         {
@@ -264,6 +268,26 @@ public class ProfileFragment extends Fragment {
             return false;
         });
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    for(int i = 0; i < fm.getBackStackEntryCount()-1; ++i) {
+                        fm.popBackStack();
+                    }
+                    BottomNavigationView bottomNavigationView;
+                    bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                    bottomNavigationView.setSelectedItemId(R.id.Home);
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
 
 //        tv_email.setOnKeyListener((v, keyCode, event) -> {
 //            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
@@ -285,6 +309,8 @@ public class ProfileFragment extends Fragment {
 //            return false;
 //        });
     }
+
+
 
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {

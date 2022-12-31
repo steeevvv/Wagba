@@ -12,12 +12,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.pojo.CartItem;
 import com.stivoo.wagba.ui.orderconfirmation.OrderConfirmationFragment;
@@ -27,7 +30,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class CartFragment extends Fragment {
-
     CartAdapter adapter = new CartAdapter();
 
     TextView subtotal;
@@ -76,14 +78,16 @@ public class CartFragment extends Fragment {
                         FragmentManager fragm = getParentFragmentManager();
                         FragmentTransaction fragmentTransaction = fragm.beginTransaction();
                         fragmentTransaction.replace(R.id.frameLayout, new EmptyCartFragment());
+                        fragmentTransaction.addToBackStack(null);
                         fragmentTransaction.commit();
                     }
                 }
             }
         });
-
-
     }
+
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -115,5 +119,26 @@ public class CartFragment extends Fragment {
         recycler.setNestedScrollingEnabled(false);
         recycler.setAdapter(adapter);
         recycler.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
+
+
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    for(int i = 0; i < fm.getBackStackEntryCount()-1; ++i) {
+                        fm.popBackStack();
+                    }
+                    BottomNavigationView bottomNavigationView;
+                    bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                    bottomNavigationView.setSelectedItemId(R.id.Home);
+
+                    return true;
+                }
+                return false;
+            }
+    });
+}
 }

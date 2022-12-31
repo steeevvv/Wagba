@@ -172,6 +172,23 @@ public class HomeFragment extends Fragment implements FeaturedRestaurantsRecycle
             }
         });
 
+        view.setFocusableInTouchMode(true);
+        view.requestFocus();
+        view.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                    for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+                        fm.popBackStack();
+                    }
+                    getActivity().finish();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     @Override

@@ -34,7 +34,8 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()){
 
                 case R.id.Home:
-                    replaceFragment(new HomeFragment());
+                    FragmentManager fragm = getSupportFragmentManager();
+                    fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment(),"HOMEEE").addToBackStack(null).commit();
                     break;
                 case R.id.Profile:
                     replaceFragment(new ProfileFragment());
@@ -49,8 +50,8 @@ public class HomeActivity extends AppCompatActivity {
 
             return true;
         });
-
     }
+
 
     private void replaceFragment(Fragment fragment){
         FragmentManager fragm = getSupportFragmentManager();
