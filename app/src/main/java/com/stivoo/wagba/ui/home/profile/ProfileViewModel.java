@@ -108,8 +108,6 @@ public class ProfileViewModel extends AndroidViewModel {
             public void onCancelled(DatabaseError databaseError) {}
         };
         ref.child("mail").addListenerForSingleValueEvent(eventListener);
-
-
     }
 
     public void updatePhone(String phone, String idd){

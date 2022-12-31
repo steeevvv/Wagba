@@ -232,9 +232,6 @@ public class ProfileFragment extends Fragment {
                 }
             });
 
-
-
-
         });
         tv_name.setOnKeyListener((v, keyCode, event) -> {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
@@ -268,25 +265,25 @@ public class ProfileFragment extends Fragment {
         });
 
 
-        tv_email.setOnKeyListener((v, keyCode, event) -> {
-            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
-                String new_email = tv_email.getText().toString();
-                String emailPattern = "[a-zA-Z0-9._-]+@eng.asu.edu.eg";
-
-                if(!new_email.matches(emailPattern)) {
-                    Toast.makeText(getContext(), "Please Set a new email of @eng.asu.edu.eg", Toast.LENGTH_SHORT).show();
-                    tv_email.setBackgroundResource(R.drawable.custom_input_err);
-                    tv_email.setError("Please Set a new email of @eng.asu.edu.eg");
-                }else{
-                    tv_email.setBackgroundResource(R.drawable.custom_input);
-                    profileViewModel.updateEmail(new_email, FirebaseAuth.getInstance().getUid());
-                    Toast.makeText(getContext(), "Email Updated Successfully", Toast.LENGTH_SHORT).show();
-                }
-                return true;
-            }
-            return false;
-        });
+//        tv_email.setOnKeyListener((v, keyCode, event) -> {
+//            if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
+//                    (keyCode == KeyEvent.KEYCODE_ENTER)) {
+//                String new_email = tv_email.getText().toString();
+//                String emailPattern = "[a-zA-Z0-9._-]+@eng.asu.edu.eg";
+//
+//                if(!new_email.matches(emailPattern)) {
+//                    Toast.makeText(getContext(), "Please Set a new email of @eng.asu.edu.eg", Toast.LENGTH_SHORT).show();
+//                    tv_email.setBackgroundResource(R.drawable.custom_input_err);
+//                    tv_email.setError("Please Set a new email of @eng.asu.edu.eg");
+//                }else{
+//                    tv_email.setBackgroundResource(R.drawable.custom_input);
+//                    profileViewModel.updateEmail(new_email, FirebaseAuth.getInstance().getUid());
+//                    Toast.makeText(getContext(), "Email Updated Successfully", Toast.LENGTH_SHORT).show();
+//                }
+//                return true;
+//            }
+//            return false;
+//        });
     }
 
     @Override
