@@ -25,6 +25,10 @@ public interface UserDao {
     @Query("UPDATE user_data SET phone = :phone WHERE id =:idd")
     void updatePhone(String phone, String idd);
 
+    @Query("UPDATE user_data SET picture = :photo WHERE id =:idd")
+    void updatePic(String photo, String idd);
+
+
     @Query("SELECT * FROM user_data where id = :idd")
     LiveData<UserModel> getUser(String idd);
 }

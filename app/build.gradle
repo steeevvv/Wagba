@@ -50,5 +50,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
 
-    implementation("com.vanniktech:android-image-cropper:4.5.0")
+      implementation 'io.github.lucksiege:pictureselector:v3.10.7'
+
 }

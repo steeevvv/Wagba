@@ -177,6 +177,9 @@ public class AuthRepository {
         new AuthRepository.UpdateUserPhoneAsyncTask(userDao).execute(phone,idd);
     }
 
+    public void updatePic(String photo, String idd){
+        new AuthRepository.UpdateUserPhotoAsyncTask(userDao).execute(photo,idd);
+    }
 
 
 
@@ -229,6 +232,18 @@ public class AuthRepository {
         @Override
         protected Void doInBackground(String... strings) {
             userDao.updatePhone(strings[0], strings[1]);
+            return null;
+        }
+    }
+
+    private static class UpdateUserPhotoAsyncTask extends AsyncTask<String, Void, Void> {
+        private UserDao userDao;
+        private UpdateUserPhotoAsyncTask(UserDao userDao) { //constructor as the class is static
+            this.userDao = userDao;
+        }
+        @Override
+        protected Void doInBackground(String... strings) {
+            userDao.updatePic(strings[0], strings[1]);
             return null;
         }
     }

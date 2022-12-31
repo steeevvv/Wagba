@@ -35,6 +35,9 @@ public class OrderTrackingFragment extends Fragment {
 
     OrderModel order;
 
+    public OrderTrackingFragment() {
+    }
+
     public OrderTrackingFragment(OrderModel pos) {
         order = pos;
     }

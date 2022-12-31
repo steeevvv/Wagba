@@ -2,9 +2,15 @@ package com.stivoo.wagba.ui.home.profile;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -14,6 +20,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,12 +33,28 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.stivoo.wagba.MainActivity;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.ui.login.Login;
 import com.stivoo.wagba.ui.previousorders.PreviousOrdersFragment;
 import com.stivoo.wagba.R;
+
+import java.io.IOException;
+import java.util.UUID;
+
 
 public class ProfileFragment extends Fragment {
     Button viewOrdersBtn;
@@ -43,6 +66,13 @@ public class ProfileFragment extends Fragment {
     EditText tv_number;
     ImageView profile_img;
     ImageButton change_pic;
+    Uri selectedImage;
+    FirebaseStorage storage;
+    StorageReference storageReference;
+    private Uri filePath;
+    Task<Uri> url;
+
+
 
     public ProfileFragment() {
 
@@ -54,6 +84,9 @@ public class ProfileFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         profileViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        storage = FirebaseStorage.getInstance();
+        storageReference = storage.getReference();
+
         profileViewModel.getLoggedOutMutableLiveData().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean aBoolean) {
@@ -76,6 +109,7 @@ public class ProfileFragment extends Fragment {
                     tv_email.setText(x.getEmail());
                     tv_name.setText(x.getName());
                     tv_number.setText(x.getPhone());
+                    Log.d("TAG", userModels.getPicture());
                     Glide.with(getContext())
                             .load(userModels.getPicture())
                             .into(profile_img);
@@ -99,6 +133,40 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+    private void uploadImage() {
+        if(filePath != null)
+        {
+            final ProgressDialog progressDialog = new ProgressDialog(getContext());
+            progressDialog.setTitle("Uploading...");
+            progressDialog.show();
+            StorageReference ref = storageReference.child("images/"+ FirebaseAuth.getInstance().getCurrentUser().getUid());
+            ref.putFile(filePath)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            progressDialog.dismiss();
+                            Toast.makeText(getContext(), "Failed "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                            double progress = (100.0*taskSnapshot.getBytesTransferred()/taskSnapshot
+                                    .getTotalByteCount());
+                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        }
+                    });
+        }
+    }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -133,15 +201,47 @@ public class ProfileFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         change_pic.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_PICK);
-            intent.setType("image/*");
-            startActivityForResult(intent, 9999);
+            Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+            startActivityForResult(intent, 3);
+
+            storageReference.child("images/"+FirebaseAuth.getInstance().getCurrentUser().getUid()).getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    DatabaseReference ref =
+                            FirebaseDatabase.getInstance().getReference("/Users"+"/"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+                    ValueEventListener eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            if(dataSnapshot.exists()) {
+                                ref.child("profile_img").setValue(String.valueOf(uri));
+                                profileViewModel.updatePic(String.valueOf(uri), FirebaseAuth.getInstance().getUid());
+                            }
+                        }
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {}
+                    };
+                    ref.child("profile_img").addListenerForSingleValueEvent(eventListener);
+//                    Uri downloadUri = taskSnapshot.getMetadata().getDownloadUrl();
+//                    generatedFilePath = downloadUri.toString(); /// The string(file link) that you need
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
+                }
+            });
+
+
+
+
         });
         tv_name.setOnKeyListener((v, keyCode, event) -> {
             if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
                     (keyCode == KeyEvent.KEYCODE_ENTER)) {
                 String new_name = tv_name.getText().toString();
                 profileViewModel.updateName(new_name, FirebaseAuth.getInstance().getUid());
+                Toast.makeText(getContext(), "Username Updated Successfully", Toast.LENGTH_SHORT).show();
                 return true;
             }
             return false;
@@ -160,6 +260,7 @@ public class ProfileFragment extends Fragment {
                 }else{
                     tv_number.setBackgroundResource(R.drawable.custom_input);
                     profileViewModel.updatePhone(new_phone, FirebaseAuth.getInstance().getUid());
+                    Toast.makeText(getContext(), "Phone Number Updated Successfully", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -180,6 +281,7 @@ public class ProfileFragment extends Fragment {
                 }else{
                     tv_email.setBackgroundResource(R.drawable.custom_input);
                     profileViewModel.updateEmail(new_email, FirebaseAuth.getInstance().getUid());
+                    Toast.makeText(getContext(), "Email Updated Successfully", Toast.LENGTH_SHORT).show();
                 }
                 return true;
             }
@@ -190,10 +292,21 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onActivityResult(int reqCode, int resultCode, Intent data) {
         super.onActivityResult(reqCode, resultCode, data);
+        if (resultCode == RESULT_OK && data!= null){
 
-        if (resultCode == RESULT_OK && reqCode == 9999){
-            Log.d("TTAAGG", data.getData().toString());
-            profile_img.setImageURI(data.getData());
+            try {
+                filePath = data.getData();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver()
+                        , data.getData());
+                selectedImage =data.getData();
+                Glide.with(getContext()).load(selectedImage).into(profile_img);
+                uploadImage();
+            }
+            catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+
         }
     }
 }
