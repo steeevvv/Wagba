@@ -23,6 +23,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.CartItem;
@@ -132,6 +133,9 @@ public class OrderConfirmationFragment extends Fragment {
                     Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                     FragmentManager fragm = getParentFragmentManager();
                     fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                    BottomNavigationView bottomNavigationView;
+                    bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                    bottomNavigationView.setSelectedItemId(R.id.Home);
                 } else if (12 - currentTime == 2){
                     if(Calendar.getInstance().getTime().getMinutes() >0){
                         Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
@@ -140,6 +144,9 @@ public class OrderConfirmationFragment extends Fragment {
                         Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                         FragmentManager fragm = getParentFragmentManager();
                         fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                        BottomNavigationView bottomNavigationView;
+                        bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                        bottomNavigationView.setSelectedItemId(R.id.Home);
                     }
                 }
                 else {
@@ -152,6 +159,9 @@ public class OrderConfirmationFragment extends Fragment {
                     Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                     FragmentManager fragm = getParentFragmentManager();
                     fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                    BottomNavigationView bottomNavigationView;
+                    bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                    bottomNavigationView.setSelectedItemId(R.id.Home);
                 } else if (15 - currentTime == 2){
                     if(Calendar.getInstance().getTime().getMinutes() >0){
                         Toast.makeText(getContext(), "INVALID TIME!!", Toast.LENGTH_SHORT).show();
@@ -160,6 +170,9 @@ public class OrderConfirmationFragment extends Fragment {
                         Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                         FragmentManager fragm = getParentFragmentManager();
                         fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment()).commit();
+                        BottomNavigationView bottomNavigationView;
+                        bottomNavigationView = (BottomNavigationView) getActivity().findViewById(R.id.navBar);
+                        bottomNavigationView.setSelectedItemId(R.id.Home);
                     }
                 }
                 else {

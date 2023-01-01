@@ -21,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -114,13 +115,6 @@ public class HomeFragment extends Fragment implements FeaturedRestaurantsRecycle
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-//        CategoryAdapter adapter = new CategoryAdapter();
-//        adapter.setList(categories);
-//        RecyclerView recycler = view.findViewById(R.id.mCategoryRecyclerView);
-//        recycler.setNestedScrollingEnabled(false);
-//        recycler.setAdapter(adapter);
-//        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         RecyclerView recycler1 = view.findViewById(R.id.m2RecyclerView);
         recycler1.setNestedScrollingEnabled(false);

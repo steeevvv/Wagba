@@ -319,8 +319,8 @@ public class ProfileFragment extends Fragment {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getApplicationContext().getContentResolver()
                         , data.getData());
                 selectedImage =data.getData();
-                Glide.with(getContext()).load(selectedImage).into(profile_img);
                 uploadImage();
+                Glide.with(getContext()).load(selectedImage).into(profile_img);
             }
             catch (IOException e)
             {

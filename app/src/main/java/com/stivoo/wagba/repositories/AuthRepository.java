@@ -74,7 +74,7 @@ public class AuthRepository {
                             if (task.isSuccessful()) {
                                 sendVerificationEmail(mail, password, name, phone);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("mail").setValue(mail);
-                                myRef.child("Users").child(task.getResult().getUser().getUid()).child("pw").setValue(password);
+//                                myRef.child("Users").child(task.getResult().getUser().getUid()).child("pw").setValue(password);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("name").setValue(name);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("phone").setValue(phone);
                                 myRef.child("Users").child(task.getResult().getUser().getUid()).child("profile_img").setValue("https://firebasestorage.googleapis.com/v0/b/wagba-c9f53.appspot.com/o/default-user.png?alt=media&token=2d7b3cae-2ddd-4f95-a759-cbf28266309d");
