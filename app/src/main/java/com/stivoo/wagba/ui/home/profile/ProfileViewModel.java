@@ -17,7 +17,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.repositories.AuthRepository;
-import com.stivoo.wagba.repositories.UserRepository;
 
 import java.util.List;
 
@@ -132,9 +131,6 @@ public class ProfileViewModel extends AndroidViewModel {
     public void updatePic(String phone, String idd){
         appRepository.updatePic(phone, idd);
     }
-
-
-
 
 
     public LiveData<UserModel> getUsers(String id) {

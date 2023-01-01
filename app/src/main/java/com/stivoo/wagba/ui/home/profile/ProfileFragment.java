@@ -73,7 +73,7 @@ public class ProfileFragment extends Fragment {
     StorageReference storageReference;
     private Uri filePath;
     Task<Uri> url;
-
+    UserModel x;
 
 
     public ProfileFragment() {
@@ -102,7 +102,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(UserModel userModels) {
                 if (userModels != null) {
-                    UserModel x = new UserModel(userModels.getId(),
+                    x = new UserModel(userModels.getId(),
                             userModels.getName(),
                             userModels.getEmail(),
                             userModels.getPhone(),
@@ -110,15 +110,16 @@ public class ProfileFragment extends Fragment {
                     tv_email.setText(x.getEmail());
                     tv_name.setText(x.getName());
                     tv_number.setText(x.getPhone());
-                    Log.d("TAG", userModels.getPicture());
+                    Log.d("PROFILE", "ROOM");
                     Glide.with(getContext())
-                            .load(userModels.getPicture())
+                            .load(x.getPicture())
                             .into(profile_img);
                     Log.d("TTAAGG", userModels.toString());
                 }else{
                     LiveData<DataSnapshot> liveData = profileViewModel.getDataSnapshotLiveData();
                     liveData.observe(ProfileFragment.this, dataSnapshot -> {
                         if (dataSnapshot != null) {
+                            Log.d("PROFILE", "DB");
                             String name = dataSnapshot.child(profileViewModel.getUid()).child("name").getValue(String.class);
                             String mail = dataSnapshot.child(profileViewModel.getUid()).child("mail").getValue(String.class);
                             String phone = dataSnapshot.child(profileViewModel.getUid()).child("phone").getValue(String.class);

@@ -14,7 +14,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.databinding.ActivitySignupBinding;
 import com.stivoo.wagba.pojo.UserModel;
-import com.stivoo.wagba.repositories.UserRepository;
 import com.stivoo.wagba.ui.login.Login;
 
 import java.util.concurrent.atomic.AtomicInteger;

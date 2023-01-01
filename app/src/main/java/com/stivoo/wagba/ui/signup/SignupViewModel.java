@@ -6,11 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.repositories.AuthRepository;
-import com.stivoo.wagba.repositories.UserRepository;
 
 public class SignupViewModel extends AndroidViewModel {
 

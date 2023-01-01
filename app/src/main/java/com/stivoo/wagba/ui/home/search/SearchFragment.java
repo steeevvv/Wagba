@@ -151,5 +151,6 @@ public class SearchFragment extends Fragment implements FeaturedRestaurantsRecyc
         fragmentTransaction.replace(R.id.frameLayout, new RestaurantFragment(res));
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
+        search_val.setText("");
     }
 }
