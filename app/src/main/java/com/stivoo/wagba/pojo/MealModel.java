@@ -1,5 +1,7 @@
 package com.stivoo.wagba.pojo;
 
+import java.util.ArrayList;
+
 public class MealModel {
 
     String name;
@@ -9,12 +11,17 @@ public class MealModel {
     int qty;
     String restaurant_name;
     String delivery_fees;
+    ArrayList<String> categories;
 
     public String getDelivery_fees() {
         return delivery_fees;
     }
 
-    public MealModel(String name, String img, String price, String description, int qty, String restaurant_name, String delivery_fees) {
+    public ArrayList<String> getCategories() {
+        return categories;
+    }
+
+    public MealModel(String name, String img, String price, String description, int qty, String restaurant_name, String delivery_fees, ArrayList<String> categories) {
         this.name = name;
         this.img = img;
         this.price = price;
@@ -22,6 +29,7 @@ public class MealModel {
         this.qty = qty;
         this.restaurant_name = restaurant_name;
         this.delivery_fees = delivery_fees;
+        this.categories = categories;
     }
 
     public MealModel() {

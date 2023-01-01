@@ -27,12 +27,11 @@ public class HomeActivity extends AppCompatActivity {
 
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
         replaceFragment(new HomeFragment());
 
         binding.navBar.setOnItemSelectedListener(item -> {
-
             switch (item.getItemId()){
-
                 case R.id.Home:
                     FragmentManager fragm = getSupportFragmentManager();
                     fragm.beginTransaction().replace(R.id.frameLayout, new HomeFragment(),"HOMEEE").addToBackStack(null).commit();
@@ -47,7 +46,6 @@ public class HomeActivity extends AppCompatActivity {
                     replaceFragment(new SearchFragment());
                     break;
             }
-
             return true;
         });
     }

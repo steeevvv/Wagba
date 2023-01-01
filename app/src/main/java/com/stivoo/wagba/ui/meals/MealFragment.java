@@ -96,8 +96,7 @@ public class MealFragment extends Fragment {
         description.setText(meal.getDescription());
 
         categories = view.findViewById(R.id.m_categories);
-        //TODO
-        String cats = String.join(" • ", "Shawerma", "Beef");
+        String cats = String.join(" • ", meal.getCategories());
         categories.setText(cats);
 
         add_to_cart = view.findViewById(R.id.add_to_cart_btn);
@@ -105,7 +104,6 @@ public class MealFragment extends Fragment {
         dec = view.findViewById(R.id.cbtn_dec);
         amt = view.findViewById(R.id.ctv_quantity);
         additional_info = view.findViewById(R.id.oet_additional_info3);
-
 
 
         if (meal.getQty() == 0){

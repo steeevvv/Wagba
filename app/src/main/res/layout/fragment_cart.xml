@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.cart.CartFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -57,7 +57,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        tools:itemCount="4"
                         tools:listitem="@layout/cart_element_card" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
@@ -176,6 +175,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>

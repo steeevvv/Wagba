@@ -135,10 +135,8 @@ public class ProfileFragment extends Fragment {
         });
     }
 
-
     private void uploadImage() {
-        if(filePath != null)
-        {
+        if(filePath != null) {
             final ProgressDialog progressDialog = new ProgressDialog(getContext());
             progressDialog.setTitle("Uploading...");
             progressDialog.show();
