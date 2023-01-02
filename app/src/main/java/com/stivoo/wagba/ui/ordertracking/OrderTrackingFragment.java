@@ -63,35 +63,34 @@ public class OrderTrackingFragment extends Fragment {
         liveData.observe(this, dataSnapshott -> {
             order = new Order();
             if (dataSnapshott != null) {
-                    Log.d("OXOXOXO", dataSnapshott.getValue().toString());
-                    order.setId((String) dataSnapshott.child("id").getValue());
-                    order.setOrderDate((String) dataSnapshott.child("orderDate").getValue());
-                    order.setOrderTime((String) dataSnapshott.child("orderTime").getValue());
-                    order.setStatusProcess((String) dataSnapshott.child("statusProcess").getValue());
-                    order.setStatusConfirm((String) dataSnapshott.child("statusConfirm").getValue());
-                    order.setStatusCooking((String) dataSnapshott.child("statusCooking").getValue());
-                    order.setStatusDelivery((String) dataSnapshott.child("statusDelivery").getValue());
-                    order.setGate((String) dataSnapshott.child("gate").getValue());
-                    order.setPeriod((String) dataSnapshott.child("period").getValue());
+                order.setId((String) dataSnapshott.child("id").getValue());
+                order.setOrderDate((String) dataSnapshott.child("orderDate").getValue());
+                order.setOrderTime((String) dataSnapshott.child("orderTime").getValue());
+                order.setStatusProcess((String) dataSnapshott.child("statusProcess").getValue());
+                order.setStatusConfirm((String) dataSnapshott.child("statusConfirm").getValue());
+                order.setStatusCooking((String) dataSnapshott.child("statusCooking").getValue());
+                order.setStatusDelivery((String) dataSnapshott.child("statusDelivery").getValue());
+                order.setGate((String) dataSnapshott.child("gate").getValue());
+                order.setPeriod((String) dataSnapshott.child("period").getValue());
 
-                    id.setText(order.getId());
-                    gate.setText(order.getGate());
-                    period.setText(order.getPeriod());
-                    date.setText(order.getOrderDate() + ", " + order.getOrderTime());
-                    placedTime.setText(order.getStatusProcess());
-                    cookingTime.setText(order.getStatusCooking());
-                    confirmedTime.setText(order.getStatusConfirm());
-                    deliveryTime.setText(order.getStatusDelivery());
+                id.setText(order.getId());
+                gate.setText(order.getGate());
+                period.setText(order.getPeriod());
+                date.setText(order.getOrderDate() + ", " + order.getOrderTime());
+                placedTime.setText(order.getStatusProcess());
+                cookingTime.setText(order.getStatusCooking());
+                confirmedTime.setText(order.getStatusConfirm());
+                deliveryTime.setText(order.getStatusDelivery());
 
-                    if (!Objects.equals(order.getStatusConfirm(), "--:--")) {
-                        confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
-                    }
-                    if (!Objects.equals(order.getStatusCooking(), "--:--")) {
-                        cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
-                    }
-                    if (!Objects.equals(order.getStatusDelivery(), "--:--")) {
-                        delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
-                    }
+                if (!Objects.equals(order.getStatusConfirm(), "--:--")) {
+                    confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
+                }
+                if (!Objects.equals(order.getStatusCooking(), "--:--")) {
+                    cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
+                }
+                if (!Objects.equals(order.getStatusDelivery(), "--:--")) {
+                    delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
+                }
             }
         });
     }
@@ -109,7 +108,7 @@ public class OrderTrackingFragment extends Fragment {
 
         id = view.findViewById(R.id.ot_id_val);
 
-        gate= view.findViewById(R.id.ot_gate_val);
+        gate = view.findViewById(R.id.ot_gate_val);
 
         period = view.findViewById(R.id.ot_period_val);
 
@@ -123,12 +122,10 @@ public class OrderTrackingFragment extends Fragment {
 
         deliveryTime = view.findViewById(R.id.ot_inprocess29);
 
-
         confirmed_image = view.findViewById(R.id.imageView10);
 
         cooking_image = view.findViewById(R.id.imageView11);
 
         delivery_image = view.findViewById(R.id.imageView12);
-
-        }
-        }
+    }
+}
