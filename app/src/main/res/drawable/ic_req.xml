@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+  <path
+      android:pathData="M3,20.289V5C3,3.895 3.895,3 5,3H19C20.105,3 21,3.895 21,5V15C21,16.105 20.105,17 19,17H7.961C7.354,17 6.779,17.276 6.4,17.751L4.069,20.664C3.714,21.107 3,20.857 3,20.289Z"
+      android:strokeWidth="1.5"
+      android:fillColor="#00000000"
+      android:strokeColor="@color/wagba_main"/>
+</vector>

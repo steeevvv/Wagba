@@ -1,14 +1,12 @@
 package com.stivoo.wagba.ui.home.cart;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -52,7 +50,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     }
 
     public void setList(ArrayList<CartItem> cartMealsList) {
-        this.cartMealsList = cartMealsList;
+        CartAdapter.cartMealsList = cartMealsList;
         notifyDataSetChanged();
     }
 

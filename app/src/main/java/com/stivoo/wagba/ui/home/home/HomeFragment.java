@@ -14,14 +14,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -39,7 +37,6 @@ import com.stivoo.wagba.pojo.MealModel;
 import com.stivoo.wagba.pojo.RestaurantModel;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 public class HomeFragment extends Fragment implements FeaturedRestaurantsRecyclerViewInterface, RecyclerViewInterface {
 

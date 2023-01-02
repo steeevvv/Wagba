@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="wagba_main_100">#c3ebd2</color>
+    <color name="wagba_main_300">#9bdeb4</color>
+    <color name="wagba_main_500">#7dd49e</color>
+    <color name="wagba_main_700">#5fca88</color>
+    <color name="wagba_main">#37bd6b</color>
+
+    <color name="wagba_secondary_100">#ffe6cc</color>
+    <color name="wagba_secondary_300">#fed5aa</color>
+    <color name="wagba_secondary_500">#fec991</color>
+    <color name="wagba_secondary_700">#febd78</color>
+    <color name="wagba_secondary">#feac56</color>
+
+    <color name="ChineseBlack_100">#b7b9b8</color>
+    <color name="ChineseBlack_300">#888b89</color>
+    <color name="ChineseBlack_500">#656866</color>
+    <color name="ChineseBlack_700">#414543</color>
+    <color name="ChineseBlack">#171215</color>
+
+    <color name="MistBlue_100">#d2d3d7</color>
+    <color name="MistBlue_300">#b4b6bd</color>
+    <color name="MistBlue_500">#9ea0aa</color>
+    <color name="MistBlue_700">#888a96</color>
+    <color name="MistBlue">#6a6c7c</color>
+</resources>

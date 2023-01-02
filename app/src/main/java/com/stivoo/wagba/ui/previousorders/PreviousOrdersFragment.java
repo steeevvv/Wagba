@@ -27,7 +27,6 @@ import com.stivoo.wagba.pojo.OrderModel;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 
 public class PreviousOrdersFragment extends Fragment implements OrderTrackingRecyclerViewInterface {
 

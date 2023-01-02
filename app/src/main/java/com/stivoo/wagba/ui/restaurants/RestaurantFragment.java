@@ -1,6 +1,5 @@
 package com.stivoo.wagba.ui.restaurants;
 
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,7 +10,6 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,10 +22,8 @@ import com.stivoo.wagba.ui.home.RecyclerViewInterface;
 import com.stivoo.wagba.ui.meals.MealFragment;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.MealModel;
-import com.stivoo.wagba.ui.home.home.FeaturedRestaurantsRecyclerViewInterface;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class RestaurantFragment extends Fragment implements RecyclerViewInterface {
 

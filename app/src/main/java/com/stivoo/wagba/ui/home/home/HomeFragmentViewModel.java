@@ -7,7 +7,6 @@ import androidx.lifecycle.ViewModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.stivoo.wagba.FirebaseQueryLiveData;
 
 public class HomeFragmentViewModel extends ViewModel {

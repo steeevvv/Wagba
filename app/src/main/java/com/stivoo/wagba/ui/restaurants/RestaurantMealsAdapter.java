@@ -13,9 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.MealModel;
-import com.stivoo.wagba.pojo.RestaurantModel;
 import com.stivoo.wagba.ui.home.RecyclerViewInterface;
-import com.stivoo.wagba.ui.home.home.FeaturedRestaurantsRecyclerViewInterface;
 
 import java.util.ArrayList;
 
@@ -50,7 +48,7 @@ public class RestaurantMealsAdapter extends RecyclerView.Adapter<RestaurantMeals
     }
 
     public void setList(ArrayList<MealModel> mealsList) {
-        this.mealsList = mealsList;
+        RestaurantMealsAdapter.mealsList = mealsList;
         notifyDataSetChanged();
     }
 

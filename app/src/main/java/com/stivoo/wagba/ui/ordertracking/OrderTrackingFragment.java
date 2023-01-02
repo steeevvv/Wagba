@@ -16,6 +16,8 @@ import android.widget.TextView;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.OrderModel;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 
@@ -51,7 +53,6 @@ public class OrderTrackingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         return inflater.inflate(R.layout.fragment_order_tracking, container, false);
     }
@@ -99,5 +100,27 @@ public class OrderTrackingFragment extends Fragment {
         if(!Objects.equals(order.getStatusDelivery(), "--:--")){
             delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
         }
-    }
+
+
+        Date idd = Calendar.getInstance().getTime();
+        if(order.getPeriod().equals("12:00 (Noon Period)") && idd.getHours() >= 10 && idd.getMinutes() > 30 && order.getStatusConfirm().equals("--:--")){
+            cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+            confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+            delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+            cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+            confirmedTime.setText("xx:xx");
+            deliveryTime.setText("xx:xx");
+            cookingTime.setText("xx:xx");
+        }else if(order.getPeriod().equals("15:00 (PM Period)") && idd.getHours() >= 13 && idd.getMinutes() > 30 && order.getStatusConfirm().equals("--:--")){
+            {
+                cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+                confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+                delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+                cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
+                confirmedTime.setText("xx:xx");
+                deliveryTime.setText("xx:xx");
+                cookingTime.setText("xx:xx");
+            }
+        }
+        }
 }

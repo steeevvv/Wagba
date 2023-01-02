@@ -1,0 +1,21 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<selector xmlns:android="http://schemas.android.com/apk/res/android">-->
+
+<!--    <item android:state_enabled="true">-->
+<!--        <shape android:shape="rectangle">-->
+<!--            <solid android:color="@color/wagba_highlight"/>-->
+<!--&lt;!&ndash;            <gradient&ndash;&gt;-->
+<!--&lt;!&ndash;                android:startColor="#1F000000"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:endColor="@android:color/transparent"&ndash;&gt;-->
+<!--&lt;!&ndash;                android:angle="90" />&ndash;&gt;-->
+<!--        </shape>-->
+<!--    </item>-->
+
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <gradient
+            android:startColor="#1F000000"
+            android:endColor="@android:color/transparent"
+            android:angle="90" />
+    </shape>
+
+<!--</selector>-->

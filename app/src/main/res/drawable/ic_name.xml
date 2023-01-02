@@ -1,0 +1,4 @@
+<vector android:height="24dp" android:viewportHeight="15"
+    android:viewportWidth="15" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="@color/wagba_main_100" android:fillType="evenOdd" android:pathData="M0,3.5C0,2.672 0.672,2 1.5,2H13.5C14.328,2 15,2.672 15,3.5V11.5C15,12.328 14.328,13 13.5,13H1.5C0.672,13 0,12.328 0,11.5V3.5ZM3,6C3,4.895 3.895,4 5,4C6.105,4 7,4.895 7,6C7,7.105 6.105,8 5,8C3.895,8 3,7.105 3,6ZM12,6H9V5H12V6ZM12,9H9V8H12V9ZM5,9C3.891,9 2.878,9.626 2.382,10.618L2.053,11.276C1.975,11.431 1.984,11.616 2.075,11.763C2.166,11.91 2.327,12 2.5,12H7.5C7.673,12 7.834,11.91 7.925,11.763C8.016,11.616 8.025,11.431 7.947,11.276L7.618,10.618C7.122,9.626 6.109,9 5,9Z"/>
+</vector>

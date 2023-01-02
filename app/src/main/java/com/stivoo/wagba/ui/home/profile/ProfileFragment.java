@@ -5,12 +5,9 @@ import static android.app.Activity.RESULT_OK;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,7 +18,6 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -47,15 +43,12 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.stivoo.wagba.MainActivity;
 import com.stivoo.wagba.pojo.UserModel;
-import com.stivoo.wagba.ui.home.home.HomeFragment;
 import com.stivoo.wagba.ui.login.Login;
 import com.stivoo.wagba.ui.previousorders.PreviousOrdersFragment;
 import com.stivoo.wagba.R;
 
 import java.io.IOException;
-import java.util.UUID;
 
 
 public class ProfileFragment extends Fragment {
@@ -110,16 +103,13 @@ public class ProfileFragment extends Fragment {
                     tv_email.setText(x.getEmail());
                     tv_name.setText(x.getName());
                     tv_number.setText(x.getPhone());
-                    Log.d("PROFILE", "ROOM");
                     Glide.with(getContext())
                             .load(x.getPicture())
                             .into(profile_img);
-                    Log.d("TTAAGG", userModels.toString());
                 }else{
                     LiveData<DataSnapshot> liveData = profileViewModel.getDataSnapshotLiveData();
                     liveData.observe(ProfileFragment.this, dataSnapshot -> {
                         if (dataSnapshot != null) {
-                            Log.d("PROFILE", "DB");
                             String name = dataSnapshot.child(profileViewModel.getUid()).child("name").getValue(String.class);
                             String mail = dataSnapshot.child(profileViewModel.getUid()).child("mail").getValue(String.class);
                             String phone = dataSnapshot.child(profileViewModel.getUid()).child("phone").getValue(String.class);

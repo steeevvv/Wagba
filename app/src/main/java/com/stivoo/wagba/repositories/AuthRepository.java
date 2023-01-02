@@ -3,11 +3,9 @@ package com.stivoo.wagba.repositories;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -16,30 +14,21 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.ui.home.profile.UserDao;
 import com.stivoo.wagba.ui.home.profile.UserDatabase;
 
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.util.Locale;
-import java.util.Random;
-
 public class AuthRepository {
-    private UserDao userDao;
-    private LiveData<UserModel> users;
+    private final UserDao userDao;
+    private final LiveData<UserModel> users;
 
 
-    private Application application;
-    private MutableLiveData<FirebaseUser> userMutableLiveData;
-    private MutableLiveData<Boolean> logOutMutableLiveData;
-    private FirebaseAuth firebaseAuth;
+    private final Application application;
+    private final MutableLiveData<FirebaseUser> userMutableLiveData;
+    private final MutableLiveData<Boolean> logOutMutableLiveData;
+    private final FirebaseAuth firebaseAuth;
 
     FirebaseDatabase database;
     DatabaseReference myRef;
@@ -188,7 +177,7 @@ public class AuthRepository {
     }
 
     private static class InsertUserAsyncTask extends AsyncTask<UserModel, Void, Void> {
-        private UserDao userDao;
+        private final UserDao userDao;
         private InsertUserAsyncTask(UserDao userDao) {
             this.userDao = userDao;
         }
@@ -201,7 +190,7 @@ public class AuthRepository {
 
 
     private static class UpdateUserNameAsyncTask extends AsyncTask<String, Void, Void> {
-        private UserDao userDao;
+        private final UserDao userDao;
         private UpdateUserNameAsyncTask(UserDao userDao) { //constructor as the class is static
             this.userDao = userDao;
         }
@@ -213,7 +202,7 @@ public class AuthRepository {
     }
 
     private static class UpdateUserEmailAsyncTask extends AsyncTask<String, Void, Void> {
-        private UserDao userDao;
+        private final UserDao userDao;
         private UpdateUserEmailAsyncTask(UserDao userDao) { //constructor as the class is static
             this.userDao = userDao;
         }
@@ -225,7 +214,7 @@ public class AuthRepository {
     }
 
     private static class UpdateUserPhoneAsyncTask extends AsyncTask<String, Void, Void> {
-        private UserDao userDao;
+        private final UserDao userDao;
         private UpdateUserPhoneAsyncTask(UserDao userDao) { //constructor as the class is static
             this.userDao = userDao;
         }
@@ -237,7 +226,7 @@ public class AuthRepository {
     }
 
     private static class UpdateUserPhotoAsyncTask extends AsyncTask<String, Void, Void> {
-        private UserDao userDao;
+        private final UserDao userDao;
         private UpdateUserPhotoAsyncTask(UserDao userDao) { //constructor as the class is static
             this.userDao = userDao;
         }
@@ -250,7 +239,7 @@ public class AuthRepository {
 
 
     private static class UpdateUserAsyncTask extends AsyncTask<UserModel, Void, Void> {
-        private UserDao userDao;
+        private final UserDao userDao;
         private UpdateUserAsyncTask(UserDao userDao) { //constructor as the class is static
             this.userDao = userDao;
         }

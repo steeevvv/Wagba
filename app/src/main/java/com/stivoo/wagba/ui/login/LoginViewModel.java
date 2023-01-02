@@ -10,8 +10,8 @@ import com.google.firebase.auth.FirebaseUser;
 import com.stivoo.wagba.repositories.AuthRepository;
 
 public class LoginViewModel extends AndroidViewModel {
-    private AuthRepository appRepository;
-    private MutableLiveData<FirebaseUser> userMutableLiveData;
+    private final AuthRepository appRepository;
+    private final MutableLiveData<FirebaseUser> userMutableLiveData;
 
     public LoginViewModel(@NonNull Application application) {
         super(application);

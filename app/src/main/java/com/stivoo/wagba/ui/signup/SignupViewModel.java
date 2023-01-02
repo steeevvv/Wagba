@@ -12,8 +12,8 @@ import com.stivoo.wagba.repositories.AuthRepository;
 
 public class SignupViewModel extends AndroidViewModel {
 
-    private AuthRepository appRepository;
-    private MutableLiveData<FirebaseUser> userMutableLiveData;
+    private final AuthRepository appRepository;
+    private final MutableLiveData<FirebaseUser> userMutableLiveData;
 
     public SignupViewModel(@NonNull Application application) {
         super(application);

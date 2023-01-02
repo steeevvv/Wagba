@@ -1,6 +1,5 @@
 package com.stivoo.wagba.ui.home.home;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,7 @@ public class FeaturedRestaurantsAdapter extends RecyclerView.Adapter<FeaturedRes
     }
 
     public void setList(ArrayList<RestaurantModel> restaurantsList) {
-        this.restaurantsList = restaurantsList;
+        FeaturedRestaurantsAdapter.restaurantsList = restaurantsList;
         notifyDataSetChanged();
     }
 

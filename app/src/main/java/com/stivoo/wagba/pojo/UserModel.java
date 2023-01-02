@@ -10,10 +10,10 @@ public class UserModel {
     @NonNull
     private String id;
 
-    private String name;
-    private String email;
-    private String phone;
-    private String picture;
+    private final String name;
+    private final String email;
+    private final String phone;
+    private final String picture;
 
     public void setId(String id) {
         this.id = id;

@@ -15,11 +15,6 @@ import android.view.ViewGroup;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.stivoo.wagba.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EmptyCartFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class EmptyCartFragment extends Fragment {
 
     public EmptyCartFragment() {

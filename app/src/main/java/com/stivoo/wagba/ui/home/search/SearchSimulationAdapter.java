@@ -45,7 +45,7 @@ public class SearchSimulationAdapter extends RecyclerView.Adapter<SearchSimulati
     }
 
     public void setList(ArrayList<RestaurantModel> searchList) {
-        this.searchList = searchList;
+        SearchSimulationAdapter.searchList = searchList;
         notifyDataSetChanged();
     }
 

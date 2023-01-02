@@ -30,7 +30,7 @@ public class OrderConfirmationAdapter extends RecyclerView.Adapter<OrderConfirma
         DecimalFormat df = new DecimalFormat("#.00");
         Float price = Float.parseFloat(orderList.get(position).getPrice().substring(4)) * orderList.get(position).getQty();
         holder.order_price.setText(String.valueOf(df.format(price)));
-        holder.tv_meal_quantity.setText("X"+String.valueOf(orderList.get(position).getQty()));
+        holder.tv_meal_quantity.setText("X"+ orderList.get(position).getQty());
     }
 
     public ArrayList<CartItem> getOrderList() {

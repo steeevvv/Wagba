@@ -1,7 +1,6 @@
 package com.stivoo.wagba.ui.home.profile;
 
 import android.app.Application;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -18,14 +17,12 @@ import com.google.firebase.database.ValueEventListener;
 import com.stivoo.wagba.pojo.UserModel;
 import com.stivoo.wagba.repositories.AuthRepository;
 
-import java.util.List;
-
 public class ProfileViewModel extends AndroidViewModel {
-    private AuthRepository appRepository;
-    private MutableLiveData<FirebaseUser> userMutableLiveData;
-    private MutableLiveData<Boolean> loggedOutMutableLiveData;
-    private FirebaseAuth firebaseAuth;
-    private LiveData<UserModel> user_data;
+    private final AuthRepository appRepository;
+    private final MutableLiveData<FirebaseUser> userMutableLiveData;
+    private final MutableLiveData<Boolean> loggedOutMutableLiveData;
+    private final FirebaseAuth firebaseAuth;
+    private final LiveData<UserModel> user_data;
 
     public ProfileViewModel(@NonNull Application application) {
         super(application);

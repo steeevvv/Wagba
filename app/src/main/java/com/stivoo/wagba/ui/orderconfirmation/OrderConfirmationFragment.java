@@ -6,14 +6,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,16 +24,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.R;
 import com.stivoo.wagba.pojo.CartItem;
-import com.stivoo.wagba.pojo.MealModel;
-import com.stivoo.wagba.ui.home.cart.CartViewModel;
-import com.stivoo.wagba.ui.home.cart.EmptyCartFragment;
 import com.stivoo.wagba.ui.home.home.HomeFragment;
-import com.stivoo.wagba.ui.orderconfirmation.OrderConfirmationAdapter;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class OrderConfirmationFragment extends Fragment {
 
@@ -64,27 +56,24 @@ public class OrderConfirmationFragment extends Fragment {
 
         orderConfirmationViewModel = new ViewModelProvider(this).get(OrderConfirmationViewModel.class);
         LiveData<DataSnapshot> liveData = orderConfirmationViewModel.getCart();
-        liveData.observe(this, new Observer<DataSnapshot>() {
-
-            @Override
-            public void onChanged(@Nullable DataSnapshot dataSnapshot) {
-                if (dataSnapshot != null) {
-                    orderItems = new ArrayList<>();
-                    subtotal_value = 0.00f;
-                    delivery_value = 0.00f;
-                    for (DataSnapshot dataSnapshott : dataSnapshot.getChildren()) {
-                        CartItem item = dataSnapshott.getValue(CartItem.class);
-                        orderItems.add(item);
-                        subtotal_value+=item.getQty()*Float.parseFloat(item.getPrice().substring(4));
-                        if (item.getDelivery_fee() > delivery_value){
-                            delivery_value = item.getDelivery_fee();
-                        }
+        liveData.observe(this, dataSnapshot -> {
+            if (dataSnapshot != null) {
+                orderItems = new ArrayList<>();
+                subtotal_value = 0.00f;
+                delivery_value = 0.00f;
+                for (DataSnapshot dataSnapshott : dataSnapshot.getChildren()) {
+                    CartItem item = dataSnapshott.getValue(CartItem.class);
+                    orderItems.add(item);
+                    assert item != null;
+                    subtotal_value+=item.getQty()*Float.parseFloat(item.getPrice().substring(4));
+                    if (item.getDelivery_fee() > delivery_value){
+                        delivery_value = item.getDelivery_fee();
                     }
-                    adapter.setList(orderItems);
-                    subtotal.setText("EGP "+ df.format(subtotal_value));
-                    delivery.setText("EGP "+ df.format(delivery_value));
-                    total.setText("EGP "+ df.format(delivery_value+subtotal_value));
                 }
+                adapter.setList(orderItems);
+                subtotal.setText("EGP "+ df.format(subtotal_value));
+                delivery.setText("EGP "+ df.format(delivery_value));
+                total.setText("EGP "+ df.format(delivery_value+subtotal_value));
             }
         });
     }
@@ -117,7 +106,6 @@ public class OrderConfirmationFragment extends Fragment {
 
         confirm.setOnClickListener(v -> {
             String gate = "";
-            String time = "";
             if (gate3.isChecked()) {
                     gate = "Gate 3";
             } else if (gate4.isChecked()) {
@@ -154,7 +142,6 @@ public class OrderConfirmationFragment extends Fragment {
                 }
             } else if (pm.isChecked()) {
                 if (15 - currentTime > 2) {
-                    Log.d("TIME", "PMMMM");
                     orderConfirmationViewModel.writeNewOrder(orderItems, info.getText().toString(), "15:00 (PM Period)", gate);
                     Toast.makeText(getContext(), "Order Placed Successfully!", Toast.LENGTH_SHORT).show();
                     FragmentManager fragm = getParentFragmentManager();

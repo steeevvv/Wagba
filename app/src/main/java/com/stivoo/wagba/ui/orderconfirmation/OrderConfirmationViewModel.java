@@ -53,7 +53,7 @@ public class OrderConfirmationViewModel extends ViewModel {
                     ref.child("period").setValue(period);
                     ref.child("gate").setValue(gate);
                     ref.child("id").setValue("#"+new Date().getTime()/1000);
-                    ref.child("statusProcess").setValue(idd.getHours() + ":"+ idd.getMinutes());
+                    ref.child("statusProcess").setValue(String.format("%02d", idd.getHours()) + ":"+ String.format("%02d", idd.getMinutes()));
                     ref.child("statusConfirm").setValue("--:--");
                     ref.child("statusCooking").setValue("--:--");
                     ref.child("statusDelivery").setValue("--:--");

@@ -1,7 +1,6 @@
 package com.stivoo.wagba.pojo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class RestaurantModel {

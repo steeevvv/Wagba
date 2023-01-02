@@ -1,7 +1,5 @@
 package com.stivoo.wagba.ui.previousorders;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;

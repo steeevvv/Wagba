@@ -52,7 +52,7 @@ public class RecommendedMealsAdapter extends RecyclerView.Adapter<RecommendedMea
     }
 
     public void setList(ArrayList<MealModel> mealsList) {
-        this.mealsList = mealsList;
+        RecommendedMealsAdapter.mealsList = mealsList;
         notifyDataSetChanged();
     }
 

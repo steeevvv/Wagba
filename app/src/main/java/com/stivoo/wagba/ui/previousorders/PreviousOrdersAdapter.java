@@ -42,7 +42,7 @@ public class PreviousOrdersAdapter extends RecyclerView.Adapter<PreviousOrdersAd
     }
 
     public void setList(ArrayList<OrderModel> ordersList) {
-        this.ordersList = ordersList;
+        PreviousOrdersAdapter.ordersList = ordersList;
         notifyDataSetChanged();
     }
 
