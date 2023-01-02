@@ -65,7 +65,7 @@ public class PreviousOrdersAdapter extends RecyclerView.Adapter<PreviousOrdersAd
                         int pos = getAdapterPosition();
 
                         if (pos != RecyclerView.NO_POSITION){
-                            recyclerViewInterface.onViewBtnClick(ordersList.get(pos));
+                            recyclerViewInterface.onViewBtnClick(ordersList.get(pos).getTimeStamp());
                         }
                     }
                 }

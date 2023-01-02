@@ -6,16 +6,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModelProvider;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.R;
+import com.stivoo.wagba.pojo.CartItem;
+import com.stivoo.wagba.pojo.Order;
 import com.stivoo.wagba.pojo.OrderModel;
+import com.stivoo.wagba.ui.orderconfirmation.OrderConfirmationViewModel;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
@@ -35,19 +43,57 @@ public class OrderTrackingFragment extends Fragment {
     ImageView cooking_image;
     ImageView delivery_image;
 
-    OrderModel order;
+    OrderTrackingViewModel orderTrackingViewModel;
+    Order order;
+    String time;
 
     public OrderTrackingFragment() {
     }
 
-    public OrderTrackingFragment(OrderModel pos) {
-        order = pos;
+    public OrderTrackingFragment(String timeStamp) {
+        time = timeStamp;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        orderTrackingViewModel = new ViewModelProvider(this).get(OrderTrackingViewModel.class);
+        LiveData<DataSnapshot> liveData = orderTrackingViewModel.getOrder(time);
+        liveData.observe(this, dataSnapshott -> {
+            order = new Order();
+            if (dataSnapshott != null) {
+                    Log.d("OXOXOXO", dataSnapshott.getValue().toString());
+                    order.setId((String) dataSnapshott.child("id").getValue());
+                    order.setOrderDate((String) dataSnapshott.child("orderDate").getValue());
+                    order.setOrderTime((String) dataSnapshott.child("orderTime").getValue());
+                    order.setStatusProcess((String) dataSnapshott.child("statusProcess").getValue());
+                    order.setStatusConfirm((String) dataSnapshott.child("statusConfirm").getValue());
+                    order.setStatusCooking((String) dataSnapshott.child("statusCooking").getValue());
+                    order.setStatusDelivery((String) dataSnapshott.child("statusDelivery").getValue());
+                    order.setGate((String) dataSnapshott.child("gate").getValue());
+                    order.setPeriod((String) dataSnapshott.child("period").getValue());
+
+                    id.setText(order.getId());
+                    gate.setText(order.getGate());
+                    period.setText(order.getPeriod());
+                    date.setText(order.getOrderDate() + ", " + order.getOrderTime());
+                    placedTime.setText(order.getStatusProcess());
+                    cookingTime.setText(order.getStatusCooking());
+                    confirmedTime.setText(order.getStatusConfirm());
+                    deliveryTime.setText(order.getStatusDelivery());
+
+                    if (!Objects.equals(order.getStatusConfirm(), "--:--")) {
+                        confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
+                    }
+                    if (!Objects.equals(order.getStatusCooking(), "--:--")) {
+                        cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
+                    }
+                    if (!Objects.equals(order.getStatusDelivery(), "--:--")) {
+                        delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
+                    }
+            }
+        });
     }
 
     @Override
@@ -62,65 +108,27 @@ public class OrderTrackingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         id = view.findViewById(R.id.ot_id_val);
-        id.setText(order.getId());
 
         gate= view.findViewById(R.id.ot_gate_val);
-        gate.setText(order.getGate());
 
         period = view.findViewById(R.id.ot_period_val);
-        period.setText(order.getPeriod());
 
         date = view.findViewById(R.id.ot_date_val);
-        date.setText(order.getOrderDate()+ ", " + order.getOrderTime());
 
         placedTime = view.findViewById(R.id.ot_inprocess3);
-        placedTime.setText(order.getStatusProcess());
 
         cookingTime = view.findViewById(R.id.ot_inprocess26);
-        cookingTime.setText(order.getStatusCooking());
 
         confirmedTime = view.findViewById(R.id.ot_inprocess22);
-        confirmedTime.setText(order.getStatusConfirm());
 
         deliveryTime = view.findViewById(R.id.ot_inprocess29);
-        deliveryTime.setText(order.getStatusDelivery());
 
 
         confirmed_image = view.findViewById(R.id.imageView10);
-        if(!Objects.equals(order.getStatusConfirm(), "--:--")){
-            confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
-        }
 
         cooking_image = view.findViewById(R.id.imageView11);
-        if(!Objects.equals(order.getStatusCooking(), "--:--")){
-            cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
-        }
 
         delivery_image = view.findViewById(R.id.imageView12);
-        if(!Objects.equals(order.getStatusDelivery(), "--:--")){
-            delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_main));
-        }
 
-
-        Date idd = Calendar.getInstance().getTime();
-        if(order.getPeriod().equals("12:00 (Noon Period)") && idd.getHours() >= 10 && idd.getMinutes() > 30 && order.getStatusConfirm().equals("--:--")){
-            cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-            confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-            delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-            cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-            confirmedTime.setText("xx:xx");
-            deliveryTime.setText("xx:xx");
-            cookingTime.setText("xx:xx");
-        }else if(order.getPeriod().equals("15:00 (PM Period)") && idd.getHours() >= 13 && idd.getMinutes() > 30 && order.getStatusConfirm().equals("--:--")){
-            {
-                cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-                confirmed_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-                delivery_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-                cooking_image.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.background_round_red));
-                confirmedTime.setText("xx:xx");
-                deliveryTime.setText("xx:xx");
-                cookingTime.setText("xx:xx");
-            }
         }
         }
-}

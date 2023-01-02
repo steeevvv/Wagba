@@ -2,17 +2,7 @@ package com.stivoo.wagba.pojo;
 
 import java.util.ArrayList;
 
-public class OrderModel {
-    String TimeStamp;
-
-    public String getTimeStamp() {
-        return TimeStamp;
-    }
-
-    public void setTimeStamp(String timeStamp) {
-        TimeStamp = timeStamp;
-    }
-
+public class Order {
     String gate;
     String orderDate;
     String orderInfo;
@@ -22,6 +12,9 @@ public class OrderModel {
     String id;
     String statusConfirm;
     String statusCooking;
+    String statusDelivery;
+    String statusProcess;
+
 
     public void setStatusConfirm(String statusConfirm) {
         this.statusConfirm = statusConfirm;
@@ -55,9 +48,6 @@ public class OrderModel {
         return statusProcess;
     }
 
-    String statusDelivery;
-    String statusProcess;
-
     public String getGate() {
         return gate;
     }
@@ -66,7 +56,7 @@ public class OrderModel {
         return orderDate;
     }
 
-    public OrderModel() {
+    public Order() {
     }
 
     public void setGate(String gate) {
@@ -117,8 +107,24 @@ public class OrderModel {
         return id;
     }
 
-    public OrderModel(String timeStamp, String gate, String orderDate, String orderInfo, String orderTime, String period, ArrayList<CartItem> meals, String id, String statusConfirm, String statusCooking, String statusDelivery, String statusProcess) {
-        TimeStamp = timeStamp;
+    @Override
+    public String toString() {
+        return "Order{" +
+                "gate='" + gate + '\'' +
+                ", orderDate='" + orderDate + '\'' +
+                ", orderInfo='" + orderInfo + '\'' +
+                ", orderTime='" + orderTime + '\'' +
+                ", period='" + period + '\'' +
+                ", meals=" + meals +
+                ", id='" + id + '\'' +
+                ", statusConfirm='" + statusConfirm + '\'' +
+                ", statusCooking='" + statusCooking + '\'' +
+                ", statusDelivery='" + statusDelivery + '\'' +
+                ", statusProcess='" + statusProcess + '\'' +
+                '}';
+    }
+
+    public Order(String gate, String orderDate, String orderInfo, String orderTime, String period, ArrayList<CartItem> meals, String id, String statusConfirm, String statusCooking, String statusDelivery, String statusProcess) {
         this.gate = gate;
         this.orderDate = orderDate;
         this.orderInfo = orderInfo;
@@ -130,5 +136,23 @@ public class OrderModel {
         this.statusCooking = statusCooking;
         this.statusDelivery = statusDelivery;
         this.statusProcess = statusProcess;
+    }
+
+
+    public float getTotal() {
+        float delivery = 0.00f;
+        float subtotal_value = 0.00f;
+
+        if (meals != null) {
+            for (CartItem ci : this.meals) {
+                subtotal_value += ci.getQty() * Float.parseFloat(ci.getPrice().substring(4));
+                if (ci.getDelivery_fee() > delivery) {
+                    delivery = ci.getDelivery_fee();
+                }
+            }
+            return subtotal_value + delivery;
+        } else {
+            return 0.00f;
+        }
     }
 }

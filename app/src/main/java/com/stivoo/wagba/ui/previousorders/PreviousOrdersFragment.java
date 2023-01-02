@@ -51,6 +51,7 @@ public class PreviousOrdersFragment extends Fragment implements OrderTrackingRec
                     ordersList = new ArrayList<>();
                     for (DataSnapshot dataSnapshott : dataSnapshot.getChildren()) {
                         OrderModel item = new OrderModel();
+                        item.setTimeStamp(dataSnapshott.getKey());
                         item.setId((String) dataSnapshott.child("id").getValue());
                         item.setOrderDate((String) dataSnapshott.child("orderDate").getValue());
                         item.setStatusProcess((String) dataSnapshott.child("statusProcess").getValue());
@@ -98,10 +99,10 @@ public class PreviousOrdersFragment extends Fragment implements OrderTrackingRec
     }
 
     @Override
-    public void onViewBtnClick(OrderModel pos) {
+    public void onViewBtnClick(String timeStamp) {
         FragmentManager fragm = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragm.beginTransaction();
-        fragmentTransaction.replace(R.id.frameLayout, new OrderTrackingFragment(pos));
+        fragmentTransaction.replace(R.id.frameLayout, new OrderTrackingFragment(timeStamp));
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
