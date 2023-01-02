@@ -59,7 +59,6 @@ public class PreviousOrdersFragment extends Fragment implements OrderTrackingRec
                         item.setStatusCooking((String) dataSnapshott.child("statusCooking").getValue());
                         item.setStatusDelivery((String) dataSnapshott.child("statusDelivery").getValue());
                         item.setGate((String) dataSnapshott.child("gate").getValue());
-//                        item.setMeals((ArrayList<CartItem>) dataSnapshott.child("meals").getValue());
                         item.setOrderInfo((String) dataSnapshott.child("orderInfo").getValue());
                         item.setPeriod((String) dataSnapshott.child("period").getValue());
                         item.setOrderTime((String) dataSnapshott.child("orderTime").getValue());
