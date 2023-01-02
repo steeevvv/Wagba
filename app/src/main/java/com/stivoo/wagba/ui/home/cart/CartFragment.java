@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.stivoo.wagba.pojo.CartItem;
 import com.stivoo.wagba.ui.orderconfirmation.OrderConfirmationFragment;
@@ -51,7 +53,7 @@ public class CartFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         cartViewModel = new ViewModelProvider(this).get(CartViewModel.class);
-        LiveData<DataSnapshot> liveData = cartViewModel.getCart();
+        LiveData<DataSnapshot> liveData = cartViewModel.getCart(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
         liveData.observe(this, new Observer<DataSnapshot>() {
 
             @Override
@@ -68,6 +70,7 @@ public class CartFragment extends Fragment {
                             delivery_value = item.getDelivery_fee();
                         }
                     }
+                    Log.d("XOXOXOXO", cartItems.toString());
                     adapter.setList(cartItems);
                     subtotal.setText("EGP "+ df.format(subtotal_value));
                     delivery.setText("EGP "+ df.format(delivery_value));
@@ -85,8 +88,6 @@ public class CartFragment extends Fragment {
             }
         });
     }
-
-
 
 
     @Override
